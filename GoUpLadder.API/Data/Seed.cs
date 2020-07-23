@@ -24,6 +24,15 @@ namespace GoUpLadder.API.Data
                     new Role{Name = "Moderator"},
                     new Role{Name = "VIP"}
                 };
+                 // create some measures
+
+                var measures = new List<Measure>
+                {
+                    new Measure{Description = "Race", Weight = 1},
+                    new Measure{Description = "Income", Weight = 2},
+                    new Measure{Description = "Investments", Weight = 3},
+                    new Measure{Description = "Family Size", Weight = 4}
+                };
 
                 foreach (var role in roles)
                 {
