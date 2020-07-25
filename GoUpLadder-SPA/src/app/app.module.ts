@@ -44,7 +44,13 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import { AdminService } from './_services/admin.service';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 import { NavBottomComponent } from './nav-bottom/nav-bottom.component';
-
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { BalanceMemberComponent } from './balance/balance-member/balance-member.component';
+import { BalanceVisitorComponent } from './balance/balance-visitor/balance-visitor.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { WebsiteDisclaimerComponent } from './website-disclaimer/website-disclaimer.component';
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -67,7 +73,14 @@ export function tokenGetter() {
       UserManagementComponent,
       PhotoManagementComponent,
       RolesModalComponent,
-      NavBottomComponent
+      NavBottomComponent,
+      AboutComponent,
+      ContactComponent,
+      BalanceMemberComponent,
+      BalanceVisitorComponent,
+      TermsOfServiceComponent,
+      PrivacyPolicyComponent,
+      WebsiteDisclaimerComponent
    ],
    imports: [
       BrowserModule,
@@ -88,8 +101,8 @@ export function tokenGetter() {
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
-            allowedDomains: ['localhost:5000'],
-            disallowedRoutes: ['localhost:5000/api/auth']
+            allowedDomains: ['localhost:5500'],
+            disallowedRoutes: ['localhost:5500/api/auth']
          }
       })
    ],

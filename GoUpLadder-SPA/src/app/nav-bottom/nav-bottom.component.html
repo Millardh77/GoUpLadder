@@ -1,5 +1,24 @@
-<footer class="footer mt-auto py-3">
-  <div class="container">
-    <span class="text-muted">Place sticky footer content here.</span>
-  </div>
+<footer>
+    <nav class="navbar navbar-expand-md navbar-light bg-secondary">
+        <div class="container">
+          <ul  class="navbar-nav mr-auto">
+            <li  class="nav-item" routerLinkActive="active" >
+              <a class="nav-link" [routerLink]="['/about']" >About</a>
+            </li>
+            <li  class="nav-item" routerLinkActive="active" >
+                <a class="nav-link" [routerLink]="['/contact']" >Contact</a>
+              </li>
+              <li  class="nav-item" routerLinkActive="active" >
+                <a class="nav-link" [routerLink]="['/terms-of-service']" >Terms of Service</a>
+              </li>
+              <li  class="nav-item" routerLinkActive="active" >
+                <a class="nav-link" [routerLink]="['/privacy-policy']" >Privacy Policy</a>
+              </li>
+              <li  class="nav-item" routerLinkActive="active" >
+                <a class="nav-link" [routerLink]="['/website-disclaimer']" >Website Disclaimer</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <p>&copy; All rights reserved for <i>MCH Media Group</i> 2020</p>
 </footer>

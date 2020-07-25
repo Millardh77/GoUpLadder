@@ -13,6 +13,13 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { BalanceMemberComponent } from './balance/balance-member/balance-member.component';
+import { BalanceVisitorComponent } from './balance/balance-visitor/balance-visitor.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { WebsiteDisclaimerComponent } from './website-disclaimer/website-disclaimer.component';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -28,7 +35,14 @@ export const appRoutes: Routes = [
                 resolve: {user: MemberEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             {path: 'messages', component: MessagesComponent, resolve: {messages: MessagesResolver}},
             {path: 'lists', component: ListsComponent, resolve: {users: ListsResolver}},
-            {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Moderator']}}
+            {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Moderator']}},
+            {path: 'about', component: AboutComponent},
+            {path: 'contact', component: ContactComponent},
+            {path: 'balance-member', component: BalanceMemberComponent},
+            {path: 'balance-visitor', component: BalanceVisitorComponent},
+            {path: 'terms-of-service', component: TermsOfServiceComponent},
+            {path: 'privacy-policy', component: PrivacyPolicyComponent},
+            {path: 'website-disclaimer', component: WebsiteDisclaimerComponent}
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}

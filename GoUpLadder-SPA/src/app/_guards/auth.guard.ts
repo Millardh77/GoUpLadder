@@ -23,12 +23,13 @@ export class AuthGuard implements CanActivate {
       }
     }
     
-    if (this.authService.loggedIn()) {
-      return true;
-    }
+    return true;
+    // if (this.authService.loggedIn()) {
+    //   return true;
+    // }
 
-    this.alertify.error('You shall not pass!!!');
-    this.router.navigate(['/home']);
-    return false;
+    // this.alertify.error('You shall not pass!!!');
+    // this.router.navigate(['/home']);
+    // return false;
   }
 }
