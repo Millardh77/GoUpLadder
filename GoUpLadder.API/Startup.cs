@@ -137,7 +137,7 @@ namespace GoUpLadder.API
             }
 
            
-            // app.UseDeveloperExceptionPage();
+             app.UseDeveloperExceptionPage();
             // app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -147,8 +147,8 @@ namespace GoUpLadder.API
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader() );
 
-            // app.UseDefaultFiles();
-            // app.UseStaticFiles();
+            app.UseDefaultFiles();  // these two should be uncommented when getting ready for production
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
