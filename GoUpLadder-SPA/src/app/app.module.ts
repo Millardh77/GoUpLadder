@@ -12,6 +12,7 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
 import {TimeagoModule} from 'ngx-timeago';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -104,7 +105,8 @@ export function tokenGetter() {
             allowedDomains: ['localhost:5500'],
             disallowedRoutes: ['localhost:5500/api/auth']
          }
-      })
+      }),
+      MDBBootstrapModule.forRoot()
    ],
    providers: [
       AuthService,
