@@ -1,10 +1,9 @@
 namespace GoUpLadder.API.Models
 {
-    public class Measure
+    public class MeasureType
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public int Weight { get; set; }
-        public virtual MeasureType Type { get; set; }
+       
     }
 }

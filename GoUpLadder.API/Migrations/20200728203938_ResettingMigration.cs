@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoUpLadder.API.Migrations
 {
-    public partial class AddedNewEntities : Migration
+    public partial class ResettingMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,32 @@ namespace GoUpLadder.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MeasureType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MeasureType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Values",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Values", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,25 +200,52 @@ namespace GoUpLadder.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Measure",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Description = table.Column<string>(nullable: true),
+                    Weight = table.Column<int>(nullable: false),
+                    TypeId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Measure", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Measure_MeasureType_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "MeasureType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserMeasure",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    MeasureId = table.Column<string>(nullable: true),
+                    MeasureId = table.Column<int>(nullable: true),
                     Weight = table.Column<int>(nullable: false),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserMeasure", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_UserMeasure_Measure_MeasureId",
+                        column: x => x.MeasureId,
+                        principalTable: "Measure",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_UserMeasure_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -233,6 +286,16 @@ namespace GoUpLadder.API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Measure_TypeId",
+                table: "Measure",
+                column: "TypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserMeasure_MeasureId",
+                table: "UserMeasure",
+                column: "MeasureId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserMeasure_UserId",
                 table: "UserMeasure",
                 column: "UserId");
@@ -259,10 +322,19 @@ namespace GoUpLadder.API.Migrations
                 name: "UserMeasure");
 
             migrationBuilder.DropTable(
+                name: "Values");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Measure");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "MeasureType");
         }
     }
 }

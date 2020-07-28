@@ -9,14 +9,50 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoUpLadder.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200721205342_AddedNewEntities")]
-    partial class AddedNewEntities
+    [Migration("20200728203938_ResettingMigration")]
+    partial class ResettingMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
+
+            modelBuilder.Entity("GoUpLadder.API.Models.Measure", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("TypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeId");
+
+                    b.ToTable("Measure");
+                });
+
+            modelBuilder.Entity("GoUpLadder.API.Models.MeasureType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeasureType");
+                });
 
             modelBuilder.Entity("GoUpLadder.API.Models.Role", b =>
                 {
@@ -176,16 +212,18 @@ namespace GoUpLadder.API.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MeasureId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("MeasureId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Weight")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MeasureId");
 
                     b.HasIndex("UserId");
 
@@ -305,13 +343,22 @@ namespace GoUpLadder.API.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GoUpLadder.API.Models.Measure", b =>
+                {
+                    b.HasOne("GoUpLadder.API.Models.MeasureType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId");
+                });
+
             modelBuilder.Entity("GoUpLadder.API.Models.UserMeasure", b =>
                 {
+                    b.HasOne("GoUpLadder.API.Models.Measure", "Measure")
+                        .WithMany()
+                        .HasForeignKey("MeasureId");
+
                     b.HasOne("GoUpLadder.API.Models.User", "User")
                         .WithMany("UserMeasures")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("GoUpLadder.API.Models.UserRole", b =>
