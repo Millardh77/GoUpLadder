@@ -18,6 +18,8 @@ namespace GoUpLadder.API.Helpers
                     opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<UserForUpdateDto, User>();
             CreateMap<UserForRegisterDto, User>();
+            // CreateMap<UserMeasuresForDetailedDto, UserMeasure>();
+            CreateMap<UserMeasure, UserMeasuresForDetailedDto>();
         }
 
     }

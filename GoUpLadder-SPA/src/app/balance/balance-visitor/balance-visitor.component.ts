@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BalanceService } from '../../_services/balance.service';
+import { Measure } from '../../_models/measure';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { Observable } from 'rxjs';
+import { Pagination, PaginatedResult } from 'src/app/_models/Pagination';
 
 @Component({
   selector: 'app-balance-visitor',
@@ -8,6 +12,9 @@ import { BalanceService } from '../../_services/balance.service';
 })
 export class BalanceVisitorComponent implements OnInit {
   greetings = '';
+  public measures: any;
+  public allmeasures: any;
+  measureId: any;
   public chartType: string = 'bar';
 
    public chartDatasets: Array<any> = [
@@ -64,9 +71,15 @@ export class BalanceVisitorComponent implements OnInit {
   // tslint:disable-next-line: member-ordering
   public summaries: any = this.chartDatasets;
 
-  constructor(private balanceService: BalanceService) { }
+  
+ 
+
+
+  constructor(private balanceService: BalanceService, private alertify: AlertifyService,) { }
 
   ngOnInit() {
+    //this.loadMeasures(1);
+    this.loadAllMeasures(1);
     // this.balanceService.sayHello()
     //   .subscribe(
     //   result => {
@@ -84,5 +97,15 @@ export class BalanceVisitorComponent implements OnInit {
         this.chartDatasets = this.cacheDatasets;
     else
         this.chartDatasets = this.cacheDatasets.filter((item) => item == filterVal);
+
 }
+loadMeasures(filterVal: any) {
+  this.measureId = filterVal;
+  this.measures = this.balanceService.getMeasures(this.measureId)
+}
+  
+
+  loadAllMeasures(filterVal: any) {
+    this.measures = this.balanceService.getAllMeasures();
+   }
 }

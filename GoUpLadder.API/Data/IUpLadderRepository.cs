@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GoUpLadder.API.Helpers;
 using GoUpLadder.API.Models;
@@ -12,6 +13,7 @@ namespace GoUpLadder.API.Data
         Task<bool> SaveAll();
         Task<PagedList<User>> GetUsers(UserParams userParams);
         Task<User> GetUser(int id);
+        Task<IEnumerable<Measure>> GetMeasures(int id);
 
     }
 }

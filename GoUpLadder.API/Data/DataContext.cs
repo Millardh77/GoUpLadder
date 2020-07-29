@@ -11,6 +11,9 @@ namespace GoUpLadder.API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<Value> Values { get; set; }
+        public DbSet<Measure> Measure { get; set; }
+        public DbSet<UserMeasure> UserMeasure { get; set; }
+        public DbSet<MeasureType> MeasureType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

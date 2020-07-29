@@ -69,5 +69,15 @@ namespace GoUpLadder.API.Data
         {
            return await _context.SaveChangesAsync() > 0;
         }
+        public  async Task<IEnumerable<Measure>> GetMeasures(int id)
+        {
+            var measures =  await _context.Measure
+                    .Where(m => m.Type.Id == id)
+                    .ToListAsync();
+                      
+            //var measures = await _context.Measures.FirstOrDefaultAsync(m => m.Type.Id == id);
+
+            return measures;
+        }
     }
 }

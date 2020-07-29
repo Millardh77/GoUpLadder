@@ -21,6 +21,18 @@
     </select>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto text-center">
+    <p *ngFor="let measure of measures">
+      {{measure.id}}, {{measure.description}}, {{measure.weight}}, {{measure.typeid}}
+    </p>
+    <select>
+      <option *ngFor="let measure of measures" [value]= "measure">{{measure.type.description}}</option>
+    </select>
+  
+  </div>
+</div>
 <div class="row">
   <div class="col-md-6 mx-auto text-center">
     <div class="row">
@@ -35,3 +47,4 @@
   {{greetings}}
 </h2> -->
 <hr/>
+
