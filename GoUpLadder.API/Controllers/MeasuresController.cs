@@ -39,5 +39,14 @@ namespace GoUpLadder.API.Controllers
 
             return Ok(measures);
         }
+
+        // GET api/measures/types
+         [HttpGet("types")]
+        public async Task<IActionResult> GetAllMeasureTypes()
+        {
+            var measuretypes = await _context.MeasureType.ToListAsync();
+
+            return Ok(measuretypes);
+        }
     }
 }

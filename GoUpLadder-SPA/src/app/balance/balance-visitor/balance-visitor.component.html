@@ -1,39 +1,151 @@
-<p>
-  This is where we'll put the balance simulator...
-</p>
-<br>
 <div class="row">
-  <div class="col-md-6 mx-auto my-5">
-    <div style="display: block">
-      <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors" [options]="chartOptions"
-        [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  <div class="col-md-12 mx-auto my-5">
+    <div style="display: block;">
+      <canvas
+        mdbChart
+        [chartType]="chartType"
+        [datasets]="chartDatasets"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+      >
       </canvas>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6 mx-auto text-center">
-    <select (change)="filterTest($event.target.value)">
-      <option value="0">--All--</option>
-      <option *ngFor="let summary of summaries" value={{summary}}>
-        {{summary}}
-      </option>
-    </select>
-  </div>
-</div>
+<!-- 
 
 <div class="row">
   <div class="col-md-6 mx-auto text-center">
-    <p *ngFor="let measure of measures">
-      {{measure.id}}, {{measure.description}}, {{measure.weight}}, {{measure.typeid}}
-    </p>
-    <select>
-      <option *ngFor="let measure of measures" [value]= "measure">{{measure.type.description}}</option>
-    </select>
-  
+<span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+  <a href id="basic-link" dropdownToggle (click)="false"
+     aria-controls="basic-link-dropdown">Click me for a dropdown, yo!</a>
+  <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" 
+      role="menu" aria-labelledby="basic-link">
+    <li *ngFor="let measure of measures1" >
+      <a class="dropdown-item" href="#"  (click)="filterTest(measure.id, measure.weight)">{{measure.description}}</a>
+    </li>
+  </ul>
+</span>
   </div>
 </div>
+ -->
 <div class="row">
+  <div class="col-md-12 mx-auto my-5">
+    <div class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption1 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure1 of measures1"
+          (click)="changeSelectedOption1(measure1.description, measure1.weight)"
+        >
+          <span class="dropdown-item"> {{ measure1.description }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption2 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure2 of measures2"
+          (click)="changeSelectedOption2(measure2.description, measure2.weight)"
+        >
+          <span class="dropdown-item"> {{ measure2.description }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption3 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure3 of measures3"
+          (click)="changeSelectedOption3(measure3.description, measure3.weight)"
+        >
+          <span class="dropdown-item"> {{ measure3.description }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption4 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure4 of measures4"
+          (click)="changeSelectedOption4(measure4.description, measure4.weight)"
+        >
+          <span class="dropdown-item"> {{ measure4.description }} </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- <div class="row">
   <div class="col-md-6 mx-auto text-center">
     <div class="row">
       <div class="col-md-4">
@@ -42,9 +154,6 @@
       </div>
     </div>
   </div>
-</div>
-<!-- <h2 class='panel-heading'>
-  {{greetings}}
-</h2> -->
-<hr/>
+</div> -->
 
+<hr />
