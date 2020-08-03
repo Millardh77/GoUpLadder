@@ -1,17 +1,62 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using AutoMapper;
 using GoUpLadder.API.Data;
+using GoUpLadder.API.Dtos;
+using GoUpLadder.API.Helpers;
+using GoUpLadder.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoUpLadder.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Route("api/users/{userId}/[controller]")]
     [ApiController]
     public class UserMeasuresController : ControllerBase
     {
-        private readonly DataContext _context;
-        public UserMeasuresController(DataContext context)
+        private readonly IUpLadderRepository _repo;
+        private readonly IMapper _mapper;
+
+        public UserMeasuresController(IUpLadderRepository repo, IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
+            _repo = repo;
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetUserMeasures(int id)
+        {
+            var userMeasuresFromRepo = await _repo.GetUserMeasures(id);
+
+            var userMeasures = _mapper.Map<IEnumerable<UserMeasuresForDetailedDto>>(userMeasuresFromRepo);
+
+            return Ok(userMeasures);
         }
         
+        [HttpPost]
+        public async Task<IActionResult> CreateUserMeasure(int userId, 
+            UserMeasureForCreationDto userMeasureForCreationDto)
+        {
+             var sender = await _repo.GetUser(userId);
+
+             if (sender.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+            
+            var message = _mapper.Map<UserMeasure>(userMeasureForCreationDto);
+
+            _repo.Add(message);
+
+            await _repo.SaveAll();
+
+            return Ok();
+
+            throw new Exception("Creating the userMeasure failed on save");
+           
+
+        }
+
     }
 }

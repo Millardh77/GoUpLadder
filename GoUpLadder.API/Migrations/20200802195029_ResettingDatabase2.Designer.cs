@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoUpLadder.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200728203938_ResettingMigration")]
-    partial class ResettingMigration
+    [Migration("20200802195029_ResettingDatabase2")]
+    partial class ResettingDatabase2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace GoUpLadder.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("TypeId")
+                    b.Property<int>("MeasureTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Weight")
@@ -35,7 +35,7 @@ namespace GoUpLadder.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("MeasureTypeId");
 
                     b.ToTable("Measure");
                 });
@@ -212,10 +212,10 @@ namespace GoUpLadder.API.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MeasureId")
+                    b.Property<int>("MeasureId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Weight")
@@ -347,18 +347,24 @@ namespace GoUpLadder.API.Migrations
                 {
                     b.HasOne("GoUpLadder.API.Models.MeasureType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId");
+                        .HasForeignKey("MeasureTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GoUpLadder.API.Models.UserMeasure", b =>
                 {
                     b.HasOne("GoUpLadder.API.Models.Measure", "Measure")
                         .WithMany()
-                        .HasForeignKey("MeasureId");
+                        .HasForeignKey("MeasureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("GoUpLadder.API.Models.User", "User")
                         .WithMany("UserMeasures")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GoUpLadder.API.Models.UserRole", b =>

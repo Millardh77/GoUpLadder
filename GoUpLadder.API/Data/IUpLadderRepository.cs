@@ -14,6 +14,8 @@ namespace GoUpLadder.API.Data
         Task<PagedList<User>> GetUsers(UserParams userParams);
         Task<User> GetUser(int id);
         Task<IEnumerable<Measure>> GetMeasures(int id);
+        Task<IEnumerable<UserMeasure>> GetUserMeasures(int id);
+        Task<string> SeedMeasures();
 
     }
 }

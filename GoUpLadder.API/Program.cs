@@ -18,17 +18,20 @@ namespace GoUpLadder.API
     {
         public static void Main(string[] args)
         {
+            
            var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
                 {
+                    //var getdata = services.GetRequiredService<UpLadderRespository>();
                     var context = services.GetRequiredService<DataContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
                     context.Database.Migrate();
-                    Seed.SeedUsers(userManager, roleManager);
+                    Seed.SeedUsers(userManager, roleManager, context);
+                   
                 }
                 catch (Exception ex)
                 {
