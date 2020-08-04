@@ -37,9 +37,9 @@ namespace GoUpLadder.API.Data
                     new MeasureType{Description = "Education Level", Id = 3},
                     new MeasureType{Description = "General Health", Id = 4},
                     new MeasureType{Description = "Race/Ethnicity", Id = 5},
-                    new MeasureType{Description = "State", Id = 6},
-                    new MeasureType{Description = "Investments", Id = 7},
-                    new MeasureType{Description = "Family Size", Id = 8},
+                    new MeasureType{Description = "Investments", Id = 6},
+                    new MeasureType{Description = "Family Size", Id = 7},
+                    new MeasureType{Description = "State", Id = 8},
                     new MeasureType{Description = "Gender", Id = 9}
                 };
         
@@ -81,12 +81,12 @@ namespace GoUpLadder.API.Data
                     new Measure{Description = "Great Health", Weight = 10, MeasureTypeId = measuretypes[3].Id},
                     new Measure{Description = "Black", Weight = 1, MeasureTypeId = measuretypes[4].Id},
                     new Measure{Description = "White", Weight = 10, MeasureTypeId = measuretypes[4].Id},
-                    new Measure{Description = "Alabama", Weight = 1, MeasureTypeId = measuretypes[5].Id},
-                    new Measure{Description = "New York", Weight = 10, MeasureTypeId = measuretypes[5].Id},
-                    new Measure{Description = "Poor Investments", Weight = 1, MeasureTypeId = measuretypes[6].Id},
-                    new Measure{Description = "Great Investments", Weight = 10, MeasureTypeId = measuretypes[6].Id},
-                    new Measure{Description = "Small Family", Weight = 2, MeasureTypeId = measuretypes[7].Id},
-                    new Measure{Description = "Large Family", Weight = 8, MeasureTypeId = measuretypes[7].Id},
+                   new Measure{Description = "Poor Investments", Weight = 1, MeasureTypeId = measuretypes[5].Id},
+                    new Measure{Description = "Great Investments", Weight = 10, MeasureTypeId = measuretypes[5].Id},
+                    new Measure{Description = "Small Family", Weight = 2, MeasureTypeId = measuretypes[6].Id},
+                    new Measure{Description = "Large Family", Weight = 8, MeasureTypeId = measuretypes[6].Id},
+                    new Measure{Description = "Alabama", Weight = 1, MeasureTypeId = measuretypes[7].Id},
+                    new Measure{Description = "New York", Weight = 10, MeasureTypeId = measuretypes[7].Id},
                     new Measure{Description = "Female", Weight = 2, MeasureTypeId = measuretypes[8].Id},
                     new Measure{Description = "Male", Weight = 6, MeasureTypeId = measuretypes[8].Id},
                 };

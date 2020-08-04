@@ -56,6 +56,22 @@ namespace GoUpLadder.API.Controllers
             throw new Exception("Creating the userMeasure failed on save");
            
 
+
+        }
+        [HttpPost("{id}")]
+        public async Task<IActionResult> DeleteUserMeasure(int id, int userId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var userMeasureFromRepo = await _repo.GetUserMeasure(id);
+
+            _repo.Delete(userMeasureFromRepo);
+
+            if (await _repo.SaveAll())
+                return NoContent();
+           
+            throw new Exception("Error deleting the user Measure");   
         }
 
     }

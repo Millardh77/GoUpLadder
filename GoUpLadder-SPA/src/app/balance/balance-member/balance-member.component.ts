@@ -6,6 +6,9 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { Usermeasure } from 'src/app/_models/usermeasure';
 
 @Component({
   selector: 'app-balance-member',
@@ -33,6 +36,8 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   option2Selected: boolean;
   option3Selected: boolean;
   option4Selected: boolean;
+  usermeasures: Usermeasure[];
+  newUserMeasure: any = {};
 
 
   onChange: (_: any) => {};
@@ -76,7 +81,8 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   public chartHovered(e: any): void { }
 
    // tslint:disable-next-line: member-ordering
-   constructor(private balanceService: BalanceService, private alertify: AlertifyService, private http: HttpClient) { 
+   constructor(private balanceService: BalanceService, private alertify: AlertifyService, private http: HttpClient, 
+    private userService: UserService, private authService: AuthService) {
     this.cachedDatasets = this.chartDatasets;
   }
   ngOnInit() {
@@ -87,6 +93,8 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     this.selectedOption4 = "Select Option";
     
     this.processMeasures();
+    this.loadUserMeasures();
+    this.processDropDowns();
   }
 
   loadAllMeasures(filterVal: any) {
@@ -190,6 +198,58 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     });
     return this.types;
   }
+
+  loadUserMeasures() {
+    //const currentUserId = +this.authService.decodedToken.nameid;
+    this.userService.getUserMeasures(this.authService.decodedToken.nameid)
+      .subscribe(usermeasures => {
+        this.usermeasures = usermeasures;
+      }, error => {
+        this.alertify.error(error);
+      });
+  }
+
+  createUserMeasure() {
+    this.userService.createUserMeasure(this.authService.decodedToken.nameid, this.newUserMeasure)
+      .subscribe((usermeasure: Usermeasure) => {
+         this.usermeasures.unshift(usermeasure);
+        this.newUserMeasure.content = '';
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+  
+  deleteUserMeasure(id: number) {
+      this.userService.deleteUserMeasure(id, this.authService.decodedToken.nameid).subscribe(() => {
+        this.usermeasures.splice(this.usermeasures.findIndex(m => m.id === id), 1);
+        // this.alertify.success('Measure has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the user measure');
+      });
+  }
+
+  processDropDowns() {
+    this.usermeasures.forEach(element => {
+      switch (element.measureid) {
+        case 1:
+          this.changeSelectedOption1(this.measures1().filter(x => x.measureid === element.measureid).description, +element.weight);
+          break;
+        case 2:
+          this.changeSelectedOption1(this.measures2().filter(x => x.measureid === element.measureid).description, +element.weight);
+          break;
+        case 3:
+          this.changeSelectedOption1(this.measures3().filter(x => x.measureid === element.measureid).description, +element.weight);
+          break;
+        case 4:
+          this.changeSelectedOption1(this.measures4().filter(x => x.measureid === element.measureid).description, +element.weight);
+          break;
+  
+        default:
+          break;
+      }
+    });
+  }
+
   writeValue(value: string) {
     switch (value) {
       case '1':
@@ -285,4 +345,5 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     console.log('Dropdown state is changed');
   }
 
+ 
 }

@@ -91,98 +91,11 @@ namespace GoUpLadder.API.Data
 
             return usermeasures;
         }
-    public async Task<string> SeedMeasures()
+
+        public async Task<UserMeasure> GetUserMeasure(int id)
         {
-            // create some measures
-            var measuretypes = new List<MeasureType>
-                {
-                    new MeasureType{Description = "Age Range", Id = 1},
-                    new MeasureType{Description = "Income Range", Id = 2},
-                    new MeasureType{Description = "Education Level", Id = 3},
-                    new MeasureType{Description = "General Health", Id = 4},
-                    new MeasureType{Description = "Race/Ethnicity", Id = 5},
-                    new MeasureType{Description = "State", Id = 6},
-                    new MeasureType{Description = "Investments", Id = 7},
-                    new MeasureType{Description = "Family Size", Id = 8},
-                    new MeasureType{Description = "Gender", Id = 9}
-                };
-
-            var measuretypesforcreation = new List<MeasureTypeForCreationDto>
-                {
-                    new MeasureTypeForCreationDto{Description = "Age Range"},
-                    new MeasureTypeForCreationDto{Description = "Income Range"},
-                    new MeasureTypeForCreationDto{Description = "Education Level"},
-                    new MeasureTypeForCreationDto{Description = "General Health"},
-                    new MeasureTypeForCreationDto{Description = "Race/Ethnicity"},
-                    new MeasureTypeForCreationDto{Description = "State"},
-                    new MeasureTypeForCreationDto{Description = "Investments"},
-                    new MeasureTypeForCreationDto{Description = "Family Size"},
-                    new MeasureTypeForCreationDto{Description = "Gender"}
-                };
-
-            foreach (var item in measuretypes)
-            {
-                //MeasureType measuretype = new MeasureType();
-                 //var measuretype = _mapper.Map<MeasureType>(item);
-                Add(measuretypes);
-            }
-
-            
-           
-            //var message = _mapper.Map<Message>(messageForCreationDto);
-           //string strResponse = await m_Singleton.CallMeasureTypes(measuretypesforcreation);
-
-            var measures = new List<MeasureForCreationDto>
-                {
-                    new MeasureForCreationDto{Description = "Under 21", Weight = 6, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "21 - 30", Weight = 9, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "31 - 40", Weight = 10, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "41 - 50", Weight = 7, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "51 - 60", Weight = 6, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "61 - 70", Weight = 5, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "71 - 80", Weight = 4, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "81 - 90", Weight = 3, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "90 - 100", Weight = 2, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "Over 100", Weight = 1, MeasureTypeId = measuretypes[0].Id},
-                    new MeasureForCreationDto{Description = "High School Diploma", Weight = 2, MeasureTypeId = measuretypes[1].Id},
-                    new MeasureForCreationDto{Description = "Some College", Weight = 4, MeasureTypeId = measuretypes[1].Id},
-                    new MeasureForCreationDto{Description = "Bachelors Degree", Weight = 6, MeasureTypeId = measuretypes[1].Id},
-                    new MeasureForCreationDto{Description = "Masters Degree", Weight = 8, MeasureTypeId = measuretypes[1].Id},
-                    new MeasureForCreationDto{Description = "Doctorate Degree", Weight = 10, MeasureTypeId = measuretypes[1].Id},
-                    new MeasureForCreationDto{Description = "Under 20,000", Weight = 2, MeasureTypeId = measuretypes[2].Id},
-                    new MeasureForCreationDto{Description = "20,000 - 49,999", Weight = 4, MeasureTypeId = measuretypes[2].Id},
-                    new MeasureForCreationDto{Description = "50,000 - 99,999", Weight = 6, MeasureTypeId = measuretypes[2].Id},
-                    new MeasureForCreationDto{Description = "100,000 - 499,999", Weight = 8, MeasureTypeId = measuretypes[2].Id},
-                    new MeasureForCreationDto{Description = "500,000+", Weight = 10, MeasureTypeId = measuretypes[2].Id},
-                    new MeasureForCreationDto{Description = "Poor Health", Weight = 1, MeasureTypeId = measuretypes[3].Id},
-                    new MeasureForCreationDto{Description = "Ok Health", Weight = 5, MeasureTypeId = measuretypes[3].Id},
-                    new MeasureForCreationDto{Description = "Great Health", Weight = 10, MeasureTypeId = measuretypes[3].Id},
-                    new MeasureForCreationDto{Description = "Black", Weight = 1, MeasureTypeId = measuretypes[4].Id},
-                    new MeasureForCreationDto{Description = "White", Weight = 10, MeasureTypeId = measuretypes[4].Id},
-                    new MeasureForCreationDto{Description = "Alabama", Weight = 1, MeasureTypeId = measuretypes[5].Id},
-                    new MeasureForCreationDto{Description = "New York", Weight = 10, MeasureTypeId = measuretypes[5].Id},
-                    new MeasureForCreationDto{Description = "Poor Investments", Weight = 1, MeasureTypeId = measuretypes[6].Id},
-                    new MeasureForCreationDto{Description = "Great Investments", Weight = 10, MeasureTypeId = measuretypes[6].Id},
-                    new MeasureForCreationDto{Description = "Small Family", Weight = 2, MeasureTypeId = measuretypes[7].Id},
-                    new MeasureForCreationDto{Description = "Large Family", Weight = 8, MeasureTypeId = measuretypes[7].Id},
-                    new MeasureForCreationDto{Description = "Female", Weight = 2, MeasureTypeId = measuretypes[8].Id},
-                    new MeasureForCreationDto{Description = "Male", Weight = 6, MeasureTypeId = measuretypes[8].Id},
-                };
-
-                foreach (var item in measures)
-            {
-               // Measure measure = new Measure();
-                //var measure = _mapper.Map<Measure>(item);
-                //Add(measure);
-            }
-
-            await SaveAll();
-
-            return "Done";
-
-            //strResponse = await m_Singleton.CallMeasures(measures);
-
+            return await _context.UserMeasure.FirstOrDefaultAsync(m => m.Id == id);
         }
-        
+ 
     }
 }

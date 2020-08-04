@@ -15,7 +15,7 @@ namespace GoUpLadder.API.Data
         Task<User> GetUser(int id);
         Task<IEnumerable<Measure>> GetMeasures(int id);
         Task<IEnumerable<UserMeasure>> GetUserMeasures(int id);
-        Task<string> SeedMeasures();
+        Task<UserMeasure> GetUserMeasure(int id);
 
     }
 }

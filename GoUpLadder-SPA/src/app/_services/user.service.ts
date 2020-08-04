@@ -6,6 +6,7 @@ import { User } from '../_models/user';
 import { PaginatedResult } from '../_models/Pagination';
 import { map } from 'rxjs/operators';
 import { Message } from '../_models/message';
+import { Usermeasure } from '../_models/usermeasure';
 
 @Injectable({
   providedIn: 'root',
@@ -62,14 +63,6 @@ export class UserService {
     return this.http.put(this.baseUrl + 'users/' + id, user);
   }
 
-  setMainPhoto(userId: number, id: number) {
-    return this.http.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {});
-  }
-
-  deletePhoto(userId: number, id: number) {
-    return this.http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id);
-  }
-
   sendLike(id: number, recipientId: number) {
     return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {});
   }
@@ -99,10 +92,22 @@ export class UserService {
       );
   }
 
+  
   getMessageThread(id: number, recipientId: number) {
-    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId)
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
   }
 
+  getUserMeasures(id: number) {
+    return this.http.get<Usermeasure[]>(this.baseUrl + 'users/' + id + '/usermeasures');
+  }
+
+  createUserMeasure(id: number, usermeasure: Usermeasure) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/usermeasures', usermeasure);
+  }
+
+  deleteUserMeasure(id: number, userId: number) {
+    return this.http.post(this.baseUrl + 'users/' + userId + '/usermeasures/' + id, {});
+  }
   sendMessage(id: number, message: Message) {
     return this.http.post(this.baseUrl + 'users/' + id + '/messages', message);
   }
