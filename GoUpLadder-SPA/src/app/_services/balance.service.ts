@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Measure } from '../_models/measure';
+import { Measuretype } from '../_models/measuretype';
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +16,16 @@ export class BalanceService {
   // Resolve HTTP using the constructor
   constructor(private http: HttpClient) { }
 
-  getMeasures(id){
-    this.http.get<Measure[]>(this.baseUrl + 'measures/' + id).subscribe(response => {
-      this.measures = response;
-    }, error => {
-      console.log(error);
-    });
-    return this.measures;
-  }
+  getMeasures(id: number){
+    return this.http.get<Measure[]>(this.baseUrl + 'measures/' + id );
+   }
+  
+  getMeasureTypes() {
+    return this.http.get<Measuretype[]>(this.baseUrl + 'measures/types');
+   }
 
   getAllMeasures() {
-    this.http.get<Measure[]>(this.baseUrl + 'measures').subscribe(response => {
-      this.measures = response;
-    }, error => {
-      console.log(error);
-    });
-    return this.measures;
+    return this.http.get<Measure[]>(this.baseUrl + 'measures');
   }
 
   sayHello(): Observable<any> {

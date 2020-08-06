@@ -26,6 +26,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
+import { BalanceMemberResolver } from './_resolvers/balance-member.resolver';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
@@ -43,6 +44,7 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { AdminService } from './_services/admin.service';
+import { BalanceService } from './_services/balance.service';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 import { NavBottomComponent } from './nav-bottom/nav-bottom.component';
 import { AboutComponent } from './about/about.component';
@@ -120,7 +122,9 @@ export function tokenGetter() {
       PreventUnsavedChanges,
       ListsResolver,
       MessagesResolver,
-      AdminService
+      AdminService,
+      BalanceService,
+      BalanceMemberResolver
    ],
    entryComponents: [
       RolesModalComponent

@@ -84,7 +84,7 @@ namespace GoUpLadder.API.Data
          public  async Task<IEnumerable<UserMeasure>> GetUserMeasures(int id)
         {
             var usermeasures =  await _context.UserMeasure
-                    .Where(m => m.User.Id == id)
+                    .Where(m => m.UserId == id)
                     .ToListAsync();
                       
             //var measures = await _context.Measures.FirstOrDefaultAsync(m => m.Type.Id == id);

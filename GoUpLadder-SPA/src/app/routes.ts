@@ -20,6 +20,7 @@ import { BalanceVisitorComponent } from './balance/balance-visitor/balance-visit
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { WebsiteDisclaimerComponent } from './website-disclaimer/website-disclaimer.component';
+import { BalanceMemberResolver } from './_resolvers/balance-member.resolver';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -38,7 +39,7 @@ export const appRoutes: Routes = [
             {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Moderator']}},
             {path: 'about', component: AboutComponent},
             {path: 'contact', component: ContactComponent},
-            {path: 'balance-member', component: BalanceMemberComponent},
+            {path: 'balance-member', component: BalanceMemberComponent, resolve: {user: BalanceMemberResolver}},
             {path: 'balance-visitor', component: BalanceVisitorComponent},
             {path: 'terms-of-service', component: TermsOfServiceComponent},
             {path: 'privacy-policy', component: PrivacyPolicyComponent},

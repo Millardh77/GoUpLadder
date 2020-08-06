@@ -20,6 +20,7 @@ namespace GoUpLadder.API.Helpers
             CreateMap<UserForRegisterDto, User>();
             // CreateMap<UserMeasuresForDetailedDto, UserMeasure>();
             CreateMap<UserMeasure, UserMeasuresForDetailedDto>();
+            CreateMap<UserMeasureForCreationDto, UserMeasure>().ReverseMap();
         }
 
     }

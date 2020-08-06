@@ -27,9 +27,9 @@ namespace GoUpLadder.API.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetUserMeasures(int id)
+        public async Task<IActionResult> GetUserMeasures(int userId)
         {
-            var userMeasuresFromRepo = await _repo.GetUserMeasures(id);
+            var userMeasuresFromRepo = await _repo.GetUserMeasures(userId);
 
             var userMeasures = _mapper.Map<IEnumerable<UserMeasuresForDetailedDto>>(userMeasuresFromRepo);
 

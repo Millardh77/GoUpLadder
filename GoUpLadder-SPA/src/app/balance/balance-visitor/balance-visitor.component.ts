@@ -103,7 +103,50 @@ export class BalanceVisitorComponent implements OnInit, ControlValueAccessor {
      const testType = this.getAllMeasureTypes();
    
    }
-
+   getMeasures(filterVal: any) {
+    // this.measureId = filterVal;
+     this.balanceService.getMeasures(filterVal).subscribe(res => {
+        // this.measures = result.result;
+        switch (filterVal) {
+          case 1:
+            this.measures1 = res;
+            for (let index = 0; index < this.measures1.length; index++) {
+              this.measures1[index].index = index + 1;
+             }
+             console.log(this.measures1);
+            return this.measures1;
+            break;
+          case 2:
+            this.measures2 = res;
+            for (let index = 0; index < this.measures2.length; index++) {
+              this.measures2[index].index = index + 1;
+             }
+             console.log(this.measures2);
+            return this.measures2;
+            break;
+          case 3:
+            this.measures3 = res;
+            for (let index = 0; index < this.measures3.length; index++) {
+              this.measures3[index].index = index + 1;
+             }
+             console.log(this.measures3);
+            return this.measures3;
+            break;
+          case 4:
+            this.measures4 = res;
+            for (let index = 0; index < this.measures4.length; index++) {
+              this.measures4[index].index = index + 1;
+             }
+             console.log(this.measures4);
+            return this.measures4;
+            break;
+          default:
+            break;
+        }
+      }, error => {
+        this.alertify.error(error);
+      });
+    }
    processMeasure1() {
     }
    processMeasure2() {
@@ -113,53 +156,12 @@ export class BalanceVisitorComponent implements OnInit, ControlValueAccessor {
   processMeasure4() {
    }
 
-   getMeasures(filterVal: any){
-    this.http.get<Measure[]>(this.baseUrl + 'measures/' + filterVal).subscribe(response => {
-      switch (filterVal) {
-        case 1:
-          this.measures1 = response;
-          for (let index = 0; index < this.measures1.length; index++) {
-            this.measures1[index].index = index + 1;
-           }
-           console.log(this.measures1);
-          return this.measures1;
-          break;
-        case 2:
-          this.measures2 = response;
-          for (let index = 0; index < this.measures2.length; index++) {
-            this.measures2[index].index = index + 1;
-           }
-           console.log(this.measures2);
-          return this.measures2;
-          break;
-        case 3:
-          this.measures3 = response;
-          for (let index = 0; index < this.measures3.length; index++) {
-            this.measures3[index].index = index + 1;
-           }
-           console.log(this.measures3);
-          return this.measures3;
-          break;
-        case 4:
-          this.measures4 = response;
-          for (let index = 0; index < this.measures4.length; index++) {
-            this.measures4[index].index = index + 1;
-           }
-           console.log(this.measures4);
-          return this.measures4;
-          break;
-        default:
-          break;
-      }
-    }, error => {
-      console.log(error);
-    });
-    return this.measures1;
-  }
+ 
 
    getAllMeasures() {
-    this.http.get<Measure[]>(this.baseUrl + 'measures').subscribe(response => {
-      this.measures1 = response;
+    //this.http.get<Measure[]>(this.baseUrl + 'measures').subscribe(response => {
+    this.balanceService.getAllMeasures().subscribe(res => {
+      this.measures = res;
     }, error => {
       console.log(error);
     });
@@ -167,8 +169,9 @@ export class BalanceVisitorComponent implements OnInit, ControlValueAccessor {
   }
 
   getAllMeasureTypes() {
-    this.http.get<Measuretype[]>(this.baseUrl + 'measures/types').subscribe(response => {
-      this.types = response;
+    //this.http.get<Measuretype[]>(this.baseUrl + 'measures/types').subscribe(response => {
+      this.balanceService.getMeasureTypes().subscribe(res => {
+      this.types = res;
       console.log(this.types);
       for (let index = 0; index < this.types.length; index++) {
         const element = this.types[index];

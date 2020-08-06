@@ -33,8 +33,8 @@ namespace GoUpLadder.API.Data
                 var measuretypes = new List<MeasureType>
                 {
                     new MeasureType{Description = "Age Range", Id = 1},
-                    new MeasureType{Description = "Income Range", Id = 2},
-                    new MeasureType{Description = "Education Level", Id = 3},
+                    new MeasureType{Description = "Education Level", Id = 2},
+                    new MeasureType{Description = "Income Range", Id = 3},
                     new MeasureType{Description = "General Health", Id = 4},
                     new MeasureType{Description = "Race/Ethnicity", Id = 5},
                     new MeasureType{Description = "Investments", Id = 6},

@@ -9,6 +9,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Usermeasure } from 'src/app/_models/usermeasure';
+import { User } from 'src/app/_models/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-balance-member',
@@ -36,7 +38,8 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   option2Selected: boolean;
   option3Selected: boolean;
   option4Selected: boolean;
-  usermeasures: Usermeasure[];
+  user: User;
+  public usermeasures: any;
   newUserMeasure: any = {};
 
 
@@ -44,6 +47,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
 
   greetings = '';
   measures: any;
+  
   public measures1: any;
   public measures2: any;
   public measures3: any;
@@ -81,20 +85,27 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   public chartHovered(e: any): void { }
 
    // tslint:disable-next-line: member-ordering
-   constructor(private balanceService: BalanceService, private alertify: AlertifyService, private http: HttpClient, 
+   constructor(private route: ActivatedRoute, private balanceService: BalanceService, 
+    private alertify: AlertifyService, private http: HttpClient, 
     private userService: UserService, private authService: AuthService) {
+    //this.user =  JSON.parse(localStorage.getItem('user'));
     this.cachedDatasets = this.chartDatasets;
+    
   }
   ngOnInit() {
-    this.selectedOption = "Select Option";
-    this.selectedOption1 = "Select Option";
-    this.selectedOption2 = "Select Option";
-    this.selectedOption3 = "Select Option";
-    this.selectedOption4 = "Select Option";
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
+    });
+
+    this.usermeasures = this.user['userMeasures'];
+    this.selectedOption = 'Select Option';
+    this.selectedOption1 = 'Select Option';
+    this.selectedOption2 = 'Select Option';
+    this.selectedOption3 = 'Select Option';
+    this.selectedOption4 = 'Select Option';
     
     this.processMeasures();
-    this.loadUserMeasures();
-    this.processDropDowns();
+    // this.processDropDowns();
   }
 
   loadAllMeasures(filterVal: any) {
@@ -106,20 +117,24 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
    
    }
 
-   processMeasure1() {
+   processMeasure1(element: Usermeasure) {
+    this.changeSelectedOption1(this.measures1().filter(x => x.measureid === element.measureid).description, +element.weight);
     }
-   processMeasure2() {
+   processMeasure2(element: Usermeasure) {
+    this.changeSelectedOption1(this.measures2().filter(x => x.measureid === element.measureid).description, +element.weight);
     }
-  processMeasure3() {
+  processMeasure3(element: Usermeasure) {
+    this.changeSelectedOption1(this.measures3().filter(x => x.measureid === element.measureid).description, +element.weight);
      }
-  processMeasure4() {
+  processMeasure4(element: Usermeasure) {
+    this.changeSelectedOption1(this.measures4().filter(x => x.measureid === element.measureid).description, +element.weight);
    }
 
    getMeasures(filterVal: any){
-    this.http.get<Measure[]>(this.baseUrl + 'measures/' + filterVal).subscribe(response => {
+    this.balanceService.getMeasures(filterVal).subscribe(res => {
       switch (filterVal) {
         case 1:
-          this.measures1 = response;
+          this.measures1 = res;
           for (let index = 0; index < this.measures1.length; index++) {
             this.measures1[index].index = index + 1;
            }
@@ -127,7 +142,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
           return this.measures1;
           break;
         case 2:
-          this.measures2 = response;
+          this.measures2 = res;
           for (let index = 0; index < this.measures2.length; index++) {
             this.measures2[index].index = index + 1;
            }
@@ -135,7 +150,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
           return this.measures2;
           break;
         case 3:
-          this.measures3 = response;
+          this.measures3 = res;
           for (let index = 0; index < this.measures3.length; index++) {
             this.measures3[index].index = index + 1;
            }
@@ -143,7 +158,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
           return this.measures3;
           break;
         case 4:
-          this.measures4 = response;
+          this.measures4 = res;
           for (let index = 0; index < this.measures4.length; index++) {
             this.measures4[index].index = index + 1;
            }
@@ -169,25 +184,26 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   }
 
   getAllMeasureTypes() {
-    this.http.get<Measuretype[]>(this.baseUrl + 'measures/types').subscribe(response => {
-      this.types = response;
+    this.balanceService.getMeasureTypes().subscribe(res => {
+      this.types = res;
       console.log(this.types);
       for (let index = 0; index < this.types.length; index++) {
         const element = this.types[index];
         console.log('In for', element);
         this.getMeasures(element.id);
+        //const testUserMeasures = this.loadUserMeasures();
         switch (index) {
+          case 0:
+            this.processMeasure1(this.usermeasures[0]);
+            break;
           case 1:
-            this.processMeasure1();
+            this.processMeasure2(this.usermeasures[1]);
             break;
           case 2:
-            this.processMeasure2();
+            this.processMeasure3(this.usermeasures[2]);
             break;
           case 3:
-            this.processMeasure3();
-            break;
-          case 4:
-            this.processMeasure4();
+            this.processMeasure4(this.usermeasures[3]);
             break;
           default:
             break;
@@ -199,21 +215,28 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     return this.types;
   }
 
-  loadUserMeasures() {
-    //const currentUserId = +this.authService.decodedToken.nameid;
-    this.userService.getUserMeasures(this.authService.decodedToken.nameid)
-      .subscribe(usermeasures => {
-        this.usermeasures = usermeasures;
-      }, error => {
-        this.alertify.error(error);
-      });
-  }
+  // loadUserMeasures() {
+  //   // const currentUserId = +this.authService.decodedToken.nameid;
+  //   // this.userService.getUserMeasures(this.authService.decodedToken.nameid)
+  //   this.http.get<Usermeasure[]>(this.baseUrl + 'users/' + this.authService.decodedToken.nameid +
+  //     '/usermeasures').subscribe(response => {
+  //     this.usermeasures = response;
+  //     return this.usermeasures;
+  //     console.log('User Measures in loadUsermeasures: ', this.usermeasures);
+      
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  //   return this.usermeasures;
+  //     // console.log('User Measures in loadUserameasures2: ', this.usermeasures);
+    
+  // }
 
   createUserMeasure() {
     this.userService.createUserMeasure(this.authService.decodedToken.nameid, this.newUserMeasure)
       .subscribe((usermeasure: Usermeasure) => {
          this.usermeasures.unshift(usermeasure);
-        this.newUserMeasure.content = '';
+         this.newUserMeasure.content = '';
     }, error => {
       this.alertify.error(error);
     });
@@ -228,27 +251,10 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
       });
   }
 
-  processDropDowns() {
-    this.usermeasures.forEach(element => {
-      switch (element.measureid) {
-        case 1:
-          this.changeSelectedOption1(this.measures1().filter(x => x.measureid === element.measureid).description, +element.weight);
-          break;
-        case 2:
-          this.changeSelectedOption1(this.measures2().filter(x => x.measureid === element.measureid).description, +element.weight);
-          break;
-        case 3:
-          this.changeSelectedOption1(this.measures3().filter(x => x.measureid === element.measureid).description, +element.weight);
-          break;
-        case 4:
-          this.changeSelectedOption1(this.measures4().filter(x => x.measureid === element.measureid).description, +element.weight);
-          break;
-  
-        default:
-          break;
-      }
-    });
-  }
+  // processDropDowns() {
+  //   const testUserMeasures = this.loadUserMeasures();
+    
+  // }
 
   writeValue(value: string) {
     switch (value) {
