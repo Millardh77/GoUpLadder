@@ -1,5 +1,6 @@
 export interface Usermeasure {
     id: number;
-    measureid: number;
+    measureTypeId: number;
     weight: string;
+    measureIndex: number;
 }

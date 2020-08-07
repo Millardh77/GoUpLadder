@@ -28,6 +28,7 @@ export class BalanceService {
     return this.http.get<Measure[]>(this.baseUrl + 'measures');
   }
 
+ 
   sayHello(): Observable<any> {
     return this.http.get(this.baseUrl + 'hello')
     .pipe (

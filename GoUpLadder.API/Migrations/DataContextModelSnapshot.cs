@@ -25,6 +25,9 @@ namespace GoUpLadder.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("MeasureIndex")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("MeasureTypeId")
                         .HasColumnType("INTEGER");
 
@@ -210,7 +213,10 @@ namespace GoUpLadder.API.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("MeasureId")
+                    b.Property<int>("MeasureIndex")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MeasureTypeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")
@@ -221,7 +227,7 @@ namespace GoUpLadder.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MeasureId");
+                    b.HasIndex("MeasureTypeId");
 
                     b.HasIndex("UserId");
 
@@ -352,9 +358,9 @@ namespace GoUpLadder.API.Migrations
 
             modelBuilder.Entity("GoUpLadder.API.Models.UserMeasure", b =>
                 {
-                    b.HasOne("GoUpLadder.API.Models.Measure", "Measure")
+                    b.HasOne("GoUpLadder.API.Models.MeasureType", "Type")
                         .WithMany()
-                        .HasForeignKey("MeasureId")
+                        .HasForeignKey("MeasureTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

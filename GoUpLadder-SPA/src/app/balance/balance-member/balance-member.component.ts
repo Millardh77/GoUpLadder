@@ -48,17 +48,17 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   greetings = '';
   measures: any;
   
-  public measures1: any;
-  public measures2: any;
-  public measures3: any;
-  public measures4: any;
+  measures1: Measure[];
+  measures2: Measure[];
+  measures3: Measure[];
+  measures4: Measure[];
   types: any;
   measureId: any;
   public chartType: string = 'bar';
   baseUrl = environment.apiUrl;
 
    public chartDatasets: Array<any> = new Array(
-    { data: [0, 100], label: 'Balance Simulation' }
+    { data: [0, 100], label: 'Your Balance' }
   );
   
   public chartLabels: Array<any> = ['Me', 'The World'];
@@ -118,16 +118,18 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
    }
 
    processMeasure1(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures1().filter(x => x.measureid === element.measureid).description, +element.weight);
+     const filteredArray = this.measures1.filter(x => x.measureIndex === element.measureIndex);
+     const descrip = filteredArray[0].description;
+     this.changeSelectedOption1(this.measures1.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
     }
    processMeasure2(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures2().filter(x => x.measureid === element.measureid).description, +element.weight);
+    this.changeSelectedOption1(this.measures2.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
     }
   processMeasure3(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures3().filter(x => x.measureid === element.measureid).description, +element.weight);
+    this.changeSelectedOption1(this.measures3.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
      }
   processMeasure4(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures4().filter(x => x.measureid === element.measureid).description, +element.weight);
+    this.changeSelectedOption1(this.measures4.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
    }
 
    getMeasures(filterVal: any){
@@ -135,34 +137,38 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
       switch (filterVal) {
         case 1:
           this.measures1 = res;
-          for (let index = 0; index < this.measures1.length; index++) {
-            this.measures1[index].index = index + 1;
-           }
+          // for (let index = 0; index < this.measures1.length; index++) {
+          //   this.measures1[index].index = index + 1;
+          //  }
            console.log(this.measures1);
+           this.processMeasure1(this.usermeasures[0]);
           return this.measures1;
           break;
         case 2:
           this.measures2 = res;
-          for (let index = 0; index < this.measures2.length; index++) {
-            this.measures2[index].index = index + 1;
-           }
+          // for (let index = 0; index < this.measures2.length; index++) {
+          //   this.measures2[index].index = index + 1;
+          //  }
            console.log(this.measures2);
-          return this.measures2;
+           this.processMeasure2(this.usermeasures[1]);
+           return this.measures2;
           break;
         case 3:
           this.measures3 = res;
-          for (let index = 0; index < this.measures3.length; index++) {
-            this.measures3[index].index = index + 1;
-           }
-           console.log(this.measures3);
-          return this.measures3;
+          // for (let index = 0; index < this.measures3.length; index++) {
+          //   this.measures3[index].index = index + 1;
+          //  }
+             console.log(this.measures3);
+             this.processMeasure3(this.usermeasures[2]);
+             return this.measures3;
           break;
         case 4:
           this.measures4 = res;
-          for (let index = 0; index < this.measures4.length; index++) {
-            this.measures4[index].index = index + 1;
-           }
+          // for (let index = 0; index < this.measures4.length; index++) {
+          //   this.measures4[index].index = index + 1;
+          //  }
            console.log(this.measures4);
+           this.processMeasure4(this.usermeasures[3]);
           return this.measures4;
           break;
         default:
@@ -171,17 +177,17 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     }, error => {
       console.log(error);
     });
-    return this.measures1;
+    //return this.measures1;
   }
 
-   getAllMeasures() {
-    this.http.get<Measure[]>(this.baseUrl + 'measures').subscribe(response => {
-      this.measures1 = response;
-    }, error => {
-      console.log(error);
-    });
-    return this.measures1;
-  }
+  //  getAllMeasures() {
+  //   this.http.get<Measure[]>(this.baseUrl + 'measures').subscribe(response => {
+  //     this.measures1 = response;
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  //   return this.measures1;
+  // }
 
   getAllMeasureTypes() {
     this.balanceService.getMeasureTypes().subscribe(res => {
@@ -192,22 +198,22 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         console.log('In for', element);
         this.getMeasures(element.id);
         //const testUserMeasures = this.loadUserMeasures();
-        switch (index) {
-          case 0:
-            this.processMeasure1(this.usermeasures[0]);
-            break;
-          case 1:
-            this.processMeasure2(this.usermeasures[1]);
-            break;
-          case 2:
-            this.processMeasure3(this.usermeasures[2]);
-            break;
-          case 3:
-            this.processMeasure4(this.usermeasures[3]);
-            break;
-          default:
-            break;
-        }
+        // switch (index) {
+        //   case 0:
+        //     this.processMeasure1(this.usermeasures[0]);
+        //     break;
+        //   case 1:
+        //     this.processMeasure2(this.usermeasures[1]);
+        //     break;
+        //   case 2:
+        //     this.processMeasure3(this.usermeasures[2]);
+        //     break;
+        //   case 3:
+        //     this.processMeasure4(this.usermeasures[3]);
+        //     break;
+        //   default:
+        //     break;
+        // }
       }
     }, error => {
       console.log(error);
@@ -236,7 +242,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
     this.userService.createUserMeasure(this.authService.decodedToken.nameid, this.newUserMeasure)
       .subscribe((usermeasure: Usermeasure) => {
          this.usermeasures.unshift(usermeasure);
-         this.newUserMeasure.content = '';
+         //this.newUserMeasure.content = '';
     }, error => {
       this.alertify.error(error);
     });
@@ -287,6 +293,13 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[0].newWeight = weight;
         this.updateChartData(0);
         this.option1Selected = true;
+        const arrayNum = this.measures1[this.measures1.findIndex(i => i.description === option)].measureIndex;
+        this.newUserMeasure = {weight: weight, measureTypeId: 1, measureIndex: arrayNum };
+        if (this.usermeasures[0] != null)
+        {
+          this.deleteUserMeasure(this.usermeasures[0].id);
+        }
+        this.createUserMeasure();
         console.log('changeOption1:' + option + ' Add weight: ' + weight, this.option1Selected);
   }
   changeSelectedOption2(option: string, weight: number) {
@@ -295,6 +308,13 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[1].newWeight = weight;
         this.updateChartData(1);
       this.option2Selected = true;
+      const arrayNum = this.measures2.findIndex(i => i.description === option);
+      this.newUserMeasure = {weight: weight, measureTypeId: 1, measureIndex: arrayNum };
+        if (this.usermeasures[1] != null)
+        {
+          this.deleteUserMeasure(this.usermeasures[1].id);
+        }
+        this.createUserMeasure();
       console.log('changeOption2:' + option + ' Add weight: ' + weight, this.option2Selected);
   }
   changeSelectedOption3(option: string, weight: number) {
@@ -303,7 +323,13 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[2].newWeight = weight;
         this.updateChartData(2);
     this.option3Selected = true;
-    
+    const arrayNum = this.measures3.findIndex(i => i.description === option);
+    this.newUserMeasure = {weight: weight, measureTypeId: 1, measureIndex: arrayNum };
+    if (this.usermeasures[2] != null)
+    {
+      this.deleteUserMeasure(this.usermeasures[2].id);
+    }
+    this.createUserMeasure();
     console.log('changeOption3:' + option + ' Add weight: ' + weight, this.option3Selected);
   }
  changeSelectedOption4(option: string, weight: number) {
@@ -312,7 +338,13 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   this.balanceOptions[3].newWeight = weight;
   this.updateChartData(3);
   this.option4Selected = true;
-  
+  const arrayNum = this.measures4.findIndex(i => i.description === option);
+  this.newUserMeasure = {weight: weight, measureTypeId: 1, measureIndex: arrayNum };
+  if (this.usermeasures[3] != null)
+  {
+    this.deleteUserMeasure(this.usermeasures[3].id);
+  }
+  this.createUserMeasure();
   console.log('changeOption4:' + option + ' Add weight: ' + weight, this.option4Selected);
   }
   updateChartData(option: number) {

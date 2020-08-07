@@ -23,7 +23,8 @@
       {
         "DateAdded": "2020-05-14",
         "Weight": 3,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 1
       }
     ]
   },
@@ -51,7 +52,8 @@
       {
         "DateAdded": "2020-02-21",
         "Weight": 5,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 2
       }
     ]
   },
@@ -79,7 +81,8 @@
       {
         "DateAdded": "2020-07-13",
         "Weight": 2,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 1
       }
     ]
   },
@@ -107,7 +110,8 @@
       {
         "DateAdded": "2020-01-31",
         "Weight": 2,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 2
       }
     ]
   },
@@ -135,7 +139,8 @@
       {
         "DateAdded": "2020-01-20",
         "Weight": 3,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 1
       }
     ]
   },
@@ -163,7 +168,8 @@
       {
         "DateAdded": "2020-08-03",
         "Weight": 4,
-        "MeasureId": 2
+        "MeasureTypeId": 2,
+        "MeasureIndex": 2
       }
     ]
   },
@@ -191,7 +197,8 @@
       {
         "DateAdded": "2020-04-28",
         "Weight": 3,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 4
       }
     ]
   },
@@ -219,7 +226,8 @@
       {
         "DateAdded": "2020-03-08",
         "Weight": 6,
-        "MeasureId": 1
+        "MeasureTypeId": 1,
+        "MeasureIndex": 3
       }
     ]
   },
@@ -247,7 +255,8 @@
       {
         "DateAdded": "2020-01-15",
         "Weight": 5,
-        "MeasureId": 2
+        "MeasureTypeId": 2,
+        "MeasureIndex": 2
       }
     ]
   },
@@ -275,7 +284,8 @@
       {
         "DateAdded": "2020-06-14",
         "Weight": 4,
-        "MeasureId": 2
+        "MeasureTypeId": 2,
+        "MeasureIndex": 1
       }
     ]
   }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoUpLadder.API.Migrations
 {
-    public partial class ResettingDatabase2 : Migration
+    public partial class ResettingDatabase3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -207,7 +207,8 @@ namespace GoUpLadder.API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Weight = table.Column<int>(nullable: false),
-                    MeasureTypeId = table.Column<int>(nullable: false)
+                    MeasureTypeId = table.Column<int>(nullable: false),
+                    MeasureIndex = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,18 +227,19 @@ namespace GoUpLadder.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    MeasureId = table.Column<int>(nullable: false),
+                    MeasureTypeId = table.Column<int>(nullable: false),
                     Weight = table.Column<int>(nullable: false),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    MeasureIndex = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserMeasure", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserMeasure_Measure_MeasureId",
-                        column: x => x.MeasureId,
-                        principalTable: "Measure",
+                        name: "FK_UserMeasure_MeasureType_MeasureTypeId",
+                        column: x => x.MeasureTypeId,
+                        principalTable: "MeasureType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -291,9 +293,9 @@ namespace GoUpLadder.API.Migrations
                 column: "MeasureTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserMeasure_MeasureId",
+                name: "IX_UserMeasure_MeasureTypeId",
                 table: "UserMeasure",
-                column: "MeasureId");
+                column: "MeasureTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserMeasure_UserId",
@@ -319,6 +321,9 @@ namespace GoUpLadder.API.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Measure");
+
+            migrationBuilder.DropTable(
                 name: "UserMeasure");
 
             migrationBuilder.DropTable(
@@ -328,13 +333,10 @@ namespace GoUpLadder.API.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Measure");
+                name: "MeasureType");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "MeasureType");
         }
     }
 }

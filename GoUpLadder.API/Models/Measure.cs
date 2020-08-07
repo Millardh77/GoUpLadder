@@ -7,5 +7,8 @@ namespace GoUpLadder.API.Models
         public int Weight { get; set; }
         public virtual MeasureType Type { get; set; }
         public int MeasureTypeId { get; set; }
+        public int MeasureIndex { get; set; }
+
+
     }
 }
