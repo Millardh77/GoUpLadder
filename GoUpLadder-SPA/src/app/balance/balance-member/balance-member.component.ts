@@ -118,18 +118,18 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
    }
 
    processMeasure1(element: Usermeasure) {
-     const filteredArray = this.measures1.filter(x => x.measureIndex === element.measureIndex);
-     const descrip = filteredArray[0].description;
+     //const filteredArray = this.measures1.filter(x => x.measureIndex === element.measureIndex);
+     //const descrip = filteredArray[0].description;
      this.changeSelectedOption1(this.measures1.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
     }
    processMeasure2(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures2.filter(x => x.measureIndex === element.measureIndex)[1].description, +element.weight);
+    this.changeSelectedOption2(this.measures2.filter(x => x.measureIndex === element.measureIndex)[1].description, +element.weight);
     }
   processMeasure3(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures3.filter(x => x.measureIndex === element.measureIndex)[2].description, +element.weight);
+    this.changeSelectedOption3(this.measures3.filter(x => x.measureIndex === element.measureIndex)[2].description, +element.weight);
      }
   processMeasure4(element: Usermeasure) {
-    this.changeSelectedOption1(this.measures4.filter(x => x.measureIndex === element.measureIndex)[3].description, +element.weight);
+    this.changeSelectedOption4(this.measures4.filter(x => x.measureIndex === element.measureIndex)[3].description, +element.weight);
    }
 
    getMeasures(filterVal: any){
@@ -301,14 +301,17 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[0].newWeight = weight;
         this.updateChartData(0);
         this.option1Selected = true;
-        const arrayNum = this.measures1[this.measures1.findIndex(i => i.description === option)].measureIndex;
-        this.newUserMeasure = {Weight: weight, MeasureTypeId: 1, MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
+        const arrayNum = this.measures1[this.measures1
+          .findIndex(i => i.description === option)].measureIndex;
+        this.newUserMeasure = {Weight: weight, MeasureTypeId: 1, 
+          MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
         if (this.usermeasures[0] != null)
         {
           this.deleteUserMeasure(this.usermeasures[0].id);
         }
         this.createUserMeasure();
-        console.log('changeOption1:' + option + ' Add weight: ' + weight, this.option1Selected);
+        console.log('changeOption1:' + option + ' Add weight: ' + weight, 
+        this.option1Selected);
   }
   changeSelectedOption2(option: string, weight: number) {
       this.selectedOption2 = option;
@@ -316,14 +319,18 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[1].newWeight = weight;
         this.updateChartData(1);
       this.option2Selected = true;
-      const arrayNum = this.measures2.findIndex(i => i.description === option);
-      this.newUserMeasure = {Weight: weight, MeasureTypeId: 2, MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
+      const arrayNum = this.measures2
+      .findIndex(i => i.description === option);
+      this.newUserMeasure = {Weight: weight, MeasureTypeId: 2,
+         MeasureIndex: arrayNum, 
+        UserId: this.authService.decodedToken.nameid };
         if (this.usermeasures[1] != null)
         {
           this.deleteUserMeasure(this.usermeasures[1].id);
         }
         this.createUserMeasure();
-      console.log('changeOption2:' + option + ' Add weight: ' + weight, this.option2Selected);
+      console.log('changeOption2:' + option + ' Add weight: ' + weight, 
+      this.option2Selected);
   }
   changeSelectedOption3(option: string, weight: number) {
     this.selectedOption3 = option;
@@ -332,13 +339,15 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.updateChartData(2);
     this.option3Selected = true;
     const arrayNum = this.measures3.findIndex(i => i.description === option);
-    this.newUserMeasure = {Weight: weight, MeasureTypeId: 3, MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
+    this.newUserMeasure = {Weight: weight, MeasureTypeId: 3, 
+      MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
     if (this.usermeasures[2] != null)
     {
       this.deleteUserMeasure(this.usermeasures[2].id);
     }
     this.createUserMeasure();
-    console.log('changeOption3:' + option + ' Add weight: ' + weight, this.option3Selected);
+    console.log('changeOption3:' + option + ' Add weight: ' + weight, 
+    this.option3Selected);
   }
  changeSelectedOption4(option: string, weight: number) {
   this.selectedOption4 = option;
@@ -347,13 +356,15 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
   this.updateChartData(3);
   this.option4Selected = true;
   const arrayNum = this.measures4.findIndex(i => i.description === option);
-  this.newUserMeasure = {Weight: weight, MeasureTypeId: 4, MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
+  this.newUserMeasure = {Weight: weight, MeasureTypeId: 4, 
+    MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
   if (this.usermeasures[3] != null)
   {
     this.deleteUserMeasure(this.usermeasures[3].id);
   }
   this.createUserMeasure();
-  console.log('changeOption4:' + option + ' Add weight: ' + weight, this.option4Selected);
+  console.log('changeOption4:' + option + ' Add weight: ' + weight, 
+  this.option4Selected);
   }
   updateChartData(option: number) {
     console.log('cacheddataset:', this.cachedDatasets, this.cachedDatasets[0].data[0]);
