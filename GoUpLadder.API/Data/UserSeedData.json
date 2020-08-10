@@ -24,7 +24,8 @@
         "DateAdded": "2020-05-14",
         "Weight": 3,
         "MeasureTypeId": 1,
-        "MeasureIndex": 1
+        "MeasureIndex": 1,
+        "Description": "Under 21"
       }
     ]
   },
@@ -53,7 +54,8 @@
         "DateAdded": "2020-02-21",
         "Weight": 5,
         "MeasureTypeId": 1,
-        "MeasureIndex": 2
+        "MeasureIndex": 2,
+        "Description": "21 - 30"
       }
     ]
   },
@@ -82,7 +84,8 @@
         "DateAdded": "2020-07-13",
         "Weight": 2,
         "MeasureTypeId": 1,
-        "MeasureIndex": 1
+        "MeasureIndex": 1,
+        "Description": "Under 21"
       }
     ]
   },
@@ -111,7 +114,8 @@
         "DateAdded": "2020-01-31",
         "Weight": 2,
         "MeasureTypeId": 1,
-        "MeasureIndex": 2
+        "MeasureIndex": 2,
+        "Description": "21 - 30"
       }
     ]
   },
@@ -140,7 +144,8 @@
         "DateAdded": "2020-01-20",
         "Weight": 3,
         "MeasureTypeId": 1,
-        "MeasureIndex": 1
+        "MeasureIndex": 1,
+        "Description": "Under 21"
       }
     ]
   },
@@ -169,7 +174,8 @@
         "DateAdded": "2020-08-03",
         "Weight": 4,
         "MeasureTypeId": 2,
-        "MeasureIndex": 2
+        "MeasureIndex": 2,
+        "Description": "Some College"
       }
     ]
   },
@@ -198,7 +204,8 @@
         "DateAdded": "2020-04-28",
         "Weight": 3,
         "MeasureTypeId": 1,
-        "MeasureIndex": 4
+        "MeasureIndex": 4,
+        "Description": "41 - 50"
       }
     ]
   },
@@ -227,7 +234,8 @@
         "DateAdded": "2020-03-08",
         "Weight": 6,
         "MeasureTypeId": 1,
-        "MeasureIndex": 3
+        "MeasureIndex": 3,
+        "Description": "31 - 40"
       }
     ]
   },
@@ -256,7 +264,8 @@
         "DateAdded": "2020-01-15",
         "Weight": 5,
         "MeasureTypeId": 2,
-        "MeasureIndex": 2
+        "MeasureIndex": 2,
+        "Description": "Some College"
       }
     ]
   },
@@ -285,7 +294,8 @@
         "DateAdded": "2020-06-14",
         "Weight": 4,
         "MeasureTypeId": 2,
-        "MeasureIndex": 1
+        "MeasureIndex": 1,
+        "Description": "High School Diploma"
       }
     ]
   }

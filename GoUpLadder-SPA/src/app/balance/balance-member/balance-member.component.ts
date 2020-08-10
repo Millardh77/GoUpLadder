@@ -120,16 +120,16 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
    processMeasure1(element: Usermeasure) {
      //const filteredArray = this.measures1.filter(x => x.measureIndex === element.measureIndex);
      //const descrip = filteredArray[0].description;
-     this.changeSelectedOption1(this.measures1.filter(x => x.measureIndex === element.measureIndex)[0].description, +element.weight);
+     this.changeSelectedOption1(this.measures1.filter(x => x.measureIndex === element.measureIndex)[0]?.description, +element.weight);
     }
    processMeasure2(element: Usermeasure) {
-    this.changeSelectedOption2(this.measures2.filter(x => x.measureIndex === element.measureIndex)[1].description, +element.weight);
+    this.changeSelectedOption2(this.measures2.filter(x => x.measureIndex === element.measureIndex)[1]?.description, +element.weight);
     }
   processMeasure3(element: Usermeasure) {
-    this.changeSelectedOption3(this.measures3.filter(x => x.measureIndex === element.measureIndex)[2].description, +element.weight);
+    this.changeSelectedOption3(this.measures3.filter(x => x.measureIndex === element.measureIndex)[2]?.description, +element.weight);
      }
   processMeasure4(element: Usermeasure) {
-    this.changeSelectedOption4(this.measures4.filter(x => x.measureIndex === element.measureIndex)[3].description, +element.weight);
+    this.changeSelectedOption4(this.measures4.filter(x => x.measureIndex === element.measureIndex)[3]?.description, +element.weight);
    }
 
    getMeasures(filterVal: any){
@@ -203,26 +203,38 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
       console.log(this.types);
       for (let index = 0; index < this.types.length; index++) {
         const element = this.types[index];
-        console.log('In for', element);
+        console.log('In get all measure types for', element);
         this.getMeasures(element.id);
-        //const testUserMeasures = this.loadUserMeasures();
-        // switch (index) {
-        //   case 0:
-        //     this.processMeasure1(this.usermeasures[0]);
-        //     break;
-        //   case 1:
-        //     this.processMeasure2(this.usermeasures[1]);
-        //     break;
-        //   case 2:
-        //     this.processMeasure3(this.usermeasures[2]);
-        //     break;
-        //   case 3:
-        //     this.processMeasure4(this.usermeasures[3]);
-        //     break;
-        //   default:
-        //     break;
-        // }
       }
+
+      this.usermeasures.forEach(element => {
+        switch (element.MeasureTypeId) {
+          case 1:
+            const arrayNum = this.measures1[this.measures1
+              .findIndex(i => i.description === option)].measureIndex;
+            this.newUserMeasure = {Weight: weight, MeasureTypeId: 1, 
+              MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
+            if (this.usermeasures[0] != null)
+            {
+              this.deleteUserMeasure(element.id);
+            }
+            this.createUserMeasure();
+            this.processMeasure1(element);
+            break;
+          case 2:
+            this.processMeasure2(element);
+            break;
+          case 3:
+            this.processMeasure3(element);
+            break;
+          case 4:
+            this.processMeasure4(element);
+            break;
+          default:
+            break;
+        }
+        
+      });
     }, error => {
       console.log(error);
     });
@@ -301,15 +313,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.balanceOptions[0].newWeight = weight;
         this.updateChartData(0);
         this.option1Selected = true;
-        const arrayNum = this.measures1[this.measures1
-          .findIndex(i => i.description === option)].measureIndex;
-        this.newUserMeasure = {Weight: weight, MeasureTypeId: 1, 
-          MeasureIndex: arrayNum, UserId: this.authService.decodedToken.nameid };
-        if (this.usermeasures[0] != null)
-        {
-          this.deleteUserMeasure(this.usermeasures[0].id);
-        }
-        this.createUserMeasure();
+        
         console.log('changeOption1:' + option + ' Add weight: ' + weight, 
         this.option1Selected);
   }
