@@ -26,6 +26,20 @@ namespace GoUpLadder.API.Controllers
             _repo = repo;
 
         }
+        [HttpGet("{id}", Name = "GetUserMeasure")]
+        public async Task<IActionResult> GetUserMeasure(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var messageFromRepo = await _repo.GetUserMeasure(id);
+
+            if (messageFromRepo == null)
+                return NotFound();
+
+            return Ok(messageFromRepo);
+
+        }
         [HttpGet]
         public async Task<IActionResult> GetUserMeasures(int userId)
         {
@@ -49,9 +63,17 @@ namespace GoUpLadder.API.Controllers
 
             _repo.Add(message);
 
-            await _repo.SaveAll();
+             
+            if (await _repo.SaveAll()) {
 
-            return Ok();
+                var messageToReturn = _mapper.Map<UserMeasureToReturnDto>(message);
+                return CreatedAtRoute("GetUserMeasure",
+                    new {userId, id = message.Id}, messageToReturn);
+            }
+
+            // await _repo.SaveAll();
+
+            // return Ok();
 
             throw new Exception("Creating the userMeasure failed on save");
            

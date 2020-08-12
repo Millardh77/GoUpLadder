@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Measure } from '../_models/measure';
 import { Measuretype } from '../_models/measuretype';
+import { Usermeasure } from '../_models/usermeasure';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class BalanceService {
 
   getAllMeasures() {
     return this.http.get<Measure[]>(this.baseUrl + 'measures');
+  }
+
+  getUserMeasures(id: number) {
+    return this.http.get<Usermeasure[]>(this.baseUrl + 'users/' + id + '/usermeasures')
   }
 
  

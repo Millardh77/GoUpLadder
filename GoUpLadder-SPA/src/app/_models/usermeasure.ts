@@ -3,4 +3,5 @@ export interface Usermeasure {
     measureTypeId: number;
     weight: string;
     measureIndex: number;
+    description: string;
 }

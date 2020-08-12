@@ -97,8 +97,8 @@ export class UserService {
     return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
   }
 
-  getUserMeasures(id: number) {
-    return this.http.get<Usermeasure[]>(this.baseUrl + 'users/' + id + '/usermeasures');
+  getUserMeasures(id): Observable<Usermeasure> {
+    return this.http.get<Usermeasure>(this.baseUrl + 'users/' + id + '/usermeasures');
   }
 
   createUserMeasure(id: number, usermeasure: Usermeasure) {
