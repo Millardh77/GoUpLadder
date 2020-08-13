@@ -21,6 +21,7 @@ import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.com
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { WebsiteDisclaimerComponent } from './website-disclaimer/website-disclaimer.component';
 import { BalanceMemberResolver } from './_resolvers/balance-member.resolver';
+import { BalanceLearnMoreComponent } from './balance/balance-learn-more/balance-learn-more.component';
 
 export const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -43,7 +44,8 @@ export const appRoutes: Routes = [
             {path: 'balance-visitor', component: BalanceVisitorComponent},
             {path: 'terms-of-service', component: TermsOfServiceComponent},
             {path: 'privacy-policy', component: PrivacyPolicyComponent},
-            {path: 'website-disclaimer', component: WebsiteDisclaimerComponent}
+            {path: 'website-disclaimer', component: WebsiteDisclaimerComponent},
+            {path: 'balance-learn-more', component: BalanceLearnMoreComponent},
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}

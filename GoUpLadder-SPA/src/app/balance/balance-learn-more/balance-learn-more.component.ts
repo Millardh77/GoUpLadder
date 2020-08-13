@@ -3,24 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-balance-learn-more',
+  templateUrl: './balance-learn-more.component.html',
+  styleUrls: ['./balance-learn-more.component.css']
 })
-export class HomeComponent implements OnInit {
+export class BalanceLearnMoreComponent implements OnInit {
 
   registerMode = false;
- 
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  // tslint:disable-next-line: typedef
   ngOnInit() {
-   
   }
 
-  // tslint:disable-next-line: typedef
-  registerToggle() {
+   // tslint:disable-next-line: typedef
+   registerToggle() {
     this.registerMode = !this.registerMode;
   }
  
