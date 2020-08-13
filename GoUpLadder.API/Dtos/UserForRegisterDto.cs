@@ -7,7 +7,7 @@ namespace GoUpLadder.API.Dtos
         [Required]
         public string Username { get; set; }
         [Required]
-        [StringLength(8, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 8 characters.")]
+        [StringLength(12, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 12 characters.")]
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string MidName { get; set; }
@@ -21,7 +21,6 @@ namespace GoUpLadder.API.Dtos
         public string knownAs { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-        [Required]
         public string Country { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }

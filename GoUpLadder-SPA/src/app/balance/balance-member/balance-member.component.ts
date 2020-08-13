@@ -90,6 +90,13 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
 
   public chartOptions: any = {
     responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   };
   public chartClicked(e: any): void {}
   public chartHovered(e: any): void {}
@@ -387,7 +394,7 @@ export class BalanceMemberComponent implements OnInit, ControlValueAccessor {
         this.option4Selected = true;
         break;
       case 5:
-        this.selectedOption4 = usermeasure.description;
+        this.selectedOption5 = usermeasure.description;
         this.balanceOptions[4].optionSelected = true;
         this.balanceOptions[4].newWeight = usermeasure.weight;
         this.updateChartData(4);

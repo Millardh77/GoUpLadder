@@ -109,6 +109,7 @@ export function tokenGetter() {
          }
       }),
       MDBBootstrapModule.forRoot()
+     
    ],
    providers: [
       AuthService,

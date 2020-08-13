@@ -16,13 +16,13 @@ export interface User {
     zip: string;
     zip4: string;
     country: string;
-    interests?: string;
-    introduction?: string;
-    educationLevel?: string;
-    incomeLevel?: string;
-    lookingFor?: string;
-    photoUrl: string;
-    photos?: Photo[];
+    // interests?: string;
+    // introduction?: string;
+    // educationLevel?: string;
+    // incomeLevel?: string;
+    // lookingFor?: string;
+    // photoUrl: string;
+    // photos?: Photo[];
     usermeasures?: Usermeasure[];
     roles?: string[];
 }

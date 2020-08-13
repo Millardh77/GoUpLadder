@@ -85,6 +85,13 @@ export class BalanceVisitorComponent implements OnInit, ControlValueAccessor {
 
   public chartOptions: any = {
     responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   };
   public chartClicked(e: any): void {}
   public chartHovered(e: any): void {}
