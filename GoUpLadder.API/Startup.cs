@@ -50,7 +50,7 @@ namespace GoUpLadder.API
         {
             services.AddDbContext<DataContext>(x => {
                 x.UseLazyLoadingProxies();
-                x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                x.UseSqlServer(Configuration.GetConnectionString("ProdConnection"));
             });
 
             ConfigureServices(services);

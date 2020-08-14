@@ -30,7 +30,7 @@ namespace GoUpLadder.API
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
                     context.Database.Migrate();
-                    Seed.SeedUsers(userManager, roleManager, context);
+                    //Seed.SeedUsers(userManager, roleManager, context);
                    
                 }
                 catch (Exception ex)

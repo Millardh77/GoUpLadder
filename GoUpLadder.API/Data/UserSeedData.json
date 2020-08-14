@@ -18,17 +18,8 @@
     "Introduction": "Pariatur cillum est est mollit eiusmod. Cillum duis nulla cupidatat culpa officia consectetur laborum aliquip consectetur excepteur. Ea commodo amet ullamco enim tempor mollit elit deserunt consectetur laborum dolor. Laborum non aliqua sunt ut sint duis labore laborum proident amet dolore sit consectetur.\r\n",
     "Interests": "esse",
     "City": "Warren",
-    "Country": "Vanuatu",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-05-14",
-        "Weight": 3,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 1,
-        "Description": "Under 21"
-      }
-    ]
-  },
+    "Country": "Vanuatu"
+    },
   {
     "Username": "Tessa",
     "FirstName": "Tessa",
@@ -48,16 +39,8 @@
     "Introduction": "Incididunt consequat in voluptate nulla sunt dolor irure exercitation qui elit nostrud. Irure enim enim mollit laboris commodo nulla consectetur et ea excepteur veniam. Do voluptate ut Lorem ad. Dolore exercitation nisi ex laborum. Officia sit consequat sunt ut nulla consequat enim.\r\n",
     "Interests": "eiusmod",
     "City": "Century",
-    "Country": "Burundi",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-02-21",
-        "Weight": 5,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 2,
-        "Description": "21 - 30"
-      }
-    ]
+    "Country": "Burundi"
+   
   },
   {
     "Username": "Virginia",
@@ -77,17 +60,8 @@
     "IncomeLevel": 4,
     "Introduction": "Excepteur laboris consectetur ipsum incididunt sint proident labore velit laborum. Occaecat enim adipisicing sit sunt anim aute enim Lorem consequat aute sunt mollit sit. Mollit officia consectetur nulla excepteur culpa consequat do commodo elit proident. Enim non laboris occaecat cupidatat deserunt non duis consectetur laborum. Laborum voluptate esse ex adipisicing consectetur laboris cillum dolore. Ea occaecat do labore amet sit cillum magna reprehenderit Lorem cupidatat sunt sit. Proident ut velit et sunt anim ipsum sint reprehenderit.\r\n",
     "Interests": "dolor",
-    "City": "Stevens",
-    "Country": "Tonga",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-07-13",
-        "Weight": 2,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 1,
-        "Description": "Under 21"
-      }
-    ]
+    "City": "Stevens"
+    
   },
   {
     "Username": "Rachael",
@@ -108,16 +82,8 @@
     "Introduction": "Labore eu anim laboris pariatur duis ullamco sunt magna labore reprehenderit fugiat. Velit deserunt aliquip cupidatat nulla dolore ea consequat mollit. Officia ad laborum anim aute incididunt occaecat mollit eu et fugiat proident esse commodo sunt.\r\n",
     "Interests": "duis",
     "City": "Gerber",
-    "Country": "Tanzania",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-01-31",
-        "Weight": 2,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 2,
-        "Description": "21 - 30"
-      }
-    ]
+    "Country": "Tanzania"
+    
   },
   {
     "Username": "Deanne",
@@ -138,16 +104,8 @@
     "Introduction": "Veniam nulla anim eiusmod veniam ut voluptate id aute. Enim ullamco consectetur eiusmod est elit exercitation occaecat sunt incididunt ipsum ea. Eiusmod cupidatat sit mollit ex. Et sit sit aliquip ullamco sint proident. Velit excepteur cillum non reprehenderit anim laborum enim non. Amet ullamco quis non veniam ea commodo. Lorem irure irure reprehenderit irure elit nisi labore.\r\n",
     "Interests": "quis",
     "City": "Denio",
-    "Country": "Sudan",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-01-20",
-        "Weight": 3,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 1,
-        "Description": "Under 21"
-      }
-    ]
+    "Country": "Sudan"
+   
   },
   {
     "Username": "Lawrence",
@@ -168,16 +126,8 @@
     "Introduction": "Exercitation id pariatur aute ut ad pariatur commodo cillum consequat laboris nostrud veniam qui. Id sint dolor sunt exercitation laborum sit nulla incididunt aliquip aliqua est. Do proident cupidatat anim mollit elit ullamco. Amet occaecat enim duis adipisicing irure amet laboris quis pariatur ad commodo velit non eiusmod. Esse laboris sit fugiat velit consequat ex aliquip sunt reprehenderit. Ullamco velit laborum pariatur non in consectetur ullamco sint amet id consequat do eiusmod.\r\n",
     "Interests": "in",
     "City": "Celeryville",
-    "Country": "Maldives",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-08-03",
-        "Weight": 4,
-        "MeasureTypeId": 2,
-        "MeasureIndex": 2,
-        "Description": "Some College"
-      }
-    ]
+    "Country": "Maldives"
+    
   },
   {
     "Username": "Joyner",
@@ -198,16 +148,8 @@
     "Introduction": "Ex exercitation laborum adipisicing amet. Ipsum ut do id laborum magna et cupidatat. Cillum qui officia laborum ad duis non fugiat anim adipisicing. Proident exercitation velit deserunt est.\r\n",
     "Interests": "laborum",
     "City": "Devon",
-    "Country": "Belarus",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-04-28",
-        "Weight": 3,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 4,
-        "Description": "41 - 50"
-      }
-    ]
+    "Country": "Belarus"
+   
   },
   {
     "Username": "Lucas",
@@ -228,16 +170,8 @@
     "Introduction": "Proident labore id enim cillum magna est cillum nulla excepteur do culpa aute. Lorem anim eu irure exercitation do mollit do reprehenderit. Labore irure cillum sint dolore. Voluptate ipsum aute aliqua culpa mollit laborum nostrud anim aute nisi. Eiusmod sunt irure occaecat ex aute ex sunt ullamco est ad aliqua consequat id non.\r\n",
     "Interests": "officia",
     "City": "Morgandale",
-    "Country": "Turks and Caicos Islands",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-03-08",
-        "Weight": 6,
-        "MeasureTypeId": 1,
-        "MeasureIndex": 3,
-        "Description": "31 - 40"
-      }
-    ]
+    "Country": "Turks and Caicos Islands"
+   
   },
   {
     "Username": "Smith",
@@ -258,16 +192,8 @@
     "Introduction": "In Lorem eiusmod non nostrud quis enim sunt. Culpa est non deserunt elit et nulla aute eiusmod. Consectetur ex adipisicing sint elit deserunt do consectetur adipisicing in do voluptate aliqua occaecat tempor. Anim id fugiat ad do ipsum commodo reprehenderit nisi. Adipisicing commodo veniam adipisicing non qui sint non voluptate. Exercitation ipsum in et id enim tempor aute ut labore irure. Nostrud aliquip excepteur proident ipsum est nulla nisi esse sunt laborum ea fugiat deserunt.\r\n",
     "Interests": "proident",
     "City": "Caln",
-    "Country": "Argentina",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-01-15",
-        "Weight": 5,
-        "MeasureTypeId": 2,
-        "MeasureIndex": 2,
-        "Description": "Some College"
-      }
-    ]
+    "Country": "Argentina"
+    
   },
   {
     "Username": "Curtis",
@@ -288,15 +214,7 @@
     "Introduction": "Cillum nulla aute est do Lorem qui nostrud ipsum. Fugiat labore amet nulla ullamco enim culpa ex consequat ea eu deserunt proident. Deserunt amet ad sunt est exercitation elit consectetur tempor commodo incididunt occaecat. Reprehenderit ullamco duis reprehenderit pariatur labore quis. Labore qui quis reprehenderit irure ipsum et dolore labore.\r\n",
     "Interests": "est",
     "City": "Efland",
-    "Country": "Netherlands Antilles",
-    "UserMeasures": [
-      {
-        "DateAdded": "2020-06-14",
-        "Weight": 4,
-        "MeasureTypeId": 2,
-        "MeasureIndex": 1,
-        "Description": "High School Diploma"
-      }
-    ]
+    "Country": "Netherlands Antilles"
+    
   }
 ]
