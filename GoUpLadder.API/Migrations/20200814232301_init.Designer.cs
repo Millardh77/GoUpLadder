@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoUpLadder.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200814043804_priorproduction2")]
-    partial class priorproduction2
+    [Migration("20200814232301_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
