@@ -16,21 +16,24 @@ namespace GoUpLadder.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             
            var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
                     //var getdata = services.GetRequiredService<UpLadderRespository>();
                     var context = services.GetRequiredService<DataContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
-                    context.Database.Migrate();
-                    //Seed.SeedUsers(userManager, roleManager, context);
+                    await context.Database.MigrateAsync();
+                    await DataContextSeed.SeedAsync(context, loggerFactory);
+                    //await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
+                    await Seed.SeedUsers(userManager, roleManager);
                    
                 }
                 catch (Exception ex)

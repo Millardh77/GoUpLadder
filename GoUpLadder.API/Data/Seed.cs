@@ -13,96 +13,21 @@ namespace GoUpLadder.API.Data
     {
         private readonly IMapper _mapper;
           private readonly IUpLadderRepository _repo;
-        public Seed(IUpLadderRepository repo, IMapper mapper, DataContext context)
+        public Seed(IUpLadderRepository repo, IMapper mapper)
         {
-            _context = context;
             _mapper = mapper;
             _repo = repo;
         }
-        //private static readonly IUpLadderRepository _repo;
-        private DataContext _context;
-        public static void SeedUsers(UserManager<User> userManager, RoleManager<Role> roleManager, DataContext context)
+        public static async Task SeedUsers(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
              
             //_repo = repo;
             if (!userManager.Users.Any())
             {
-                var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
+                var userData = System.IO.File.ReadAllText("Data/SeedData/UserSeedData.json");
                 var users = JsonConvert.DeserializeObject<List<User>>(userData);
 
-            //     // create some measures
-            //     var measuretypes = new List<MeasureType>
-            //     {
-            //         new MeasureType{Description = "Age Range"},
-            //         new MeasureType{Description = "Education Level"},
-            //         new MeasureType{Description = "Income Range"},
-            //         new MeasureType{Description = "General Health"},
-            //         new MeasureType{Description = "Race/Ethnicity"},
-            //         new MeasureType{Description = "Investments"},
-            //         new MeasureType{Description = "Family Size"},
-            //         new MeasureType{Description = "State"},
-            //         new MeasureType{Description = "Gender"}
-            //     };
-        
-
-            // foreach (var item in measuretypes)
-            // {
-            //     //MeasureType measuretype = new MeasureType();
-            //     // var measuretype = _mapper.Map<MeasureType>(item);
-            //     context.Add(item);
-            // }
            
-        //     //var message = _mapper.Map<Message>(messageForCreationDto);
-        //    //string strResponse = await m_Singleton.CallMeasureTypes(measuretypesforcreation);
-
-        //     var measures = new List<Measure>
-        //         {
-        //             new Measure{Description = "Under 21", Weight = 6, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 1},
-        //             new Measure{Description = "21 - 30", Weight = 9, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 2},
-        //             new Measure{Description = "31 - 40", Weight = 10, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 3},
-        //             new Measure{Description = "41 - 50", Weight = 7, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 4},
-        //             new Measure{Description = "51 - 60", Weight = 6, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 5},
-        //             new Measure{Description = "61 - 70", Weight = 5, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 6},
-        //             new Measure{Description = "71 - 80", Weight = 4, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 7},
-        //             new Measure{Description = "81 - 90", Weight = 3, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 8},
-        //             new Measure{Description = "90 - 100", Weight = 2, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 9},
-        //             new Measure{Description = "Over 100", Weight = 1, MeasureTypeId = measuretypes[0].Id, MeasureIndex = 10},
-        //             new Measure{Description = "High School Diploma", Weight = 2, MeasureTypeId = measuretypes[1].Id, MeasureIndex = 1},
-        //             new Measure{Description = "Some College", Weight = 4, MeasureTypeId = measuretypes[1].Id, MeasureIndex = 2},
-        //             new Measure{Description = "Bachelors Degree", Weight = 6, MeasureTypeId = measuretypes[1].Id, MeasureIndex = 3},
-        //             new Measure{Description = "Masters Degree", Weight = 8, MeasureTypeId = measuretypes[1].Id, MeasureIndex = 4},
-        //             new Measure{Description = "Doctorate Degree", Weight = 10, MeasureTypeId = measuretypes[1].Id, MeasureIndex = 5},
-        //             new Measure{Description = "Under 20,000", Weight = 2, MeasureTypeId = measuretypes[2].Id, MeasureIndex = 1},
-        //             new Measure{Description = "20,000 - 49,999", Weight = 4, MeasureTypeId = measuretypes[2].Id, MeasureIndex = 2},
-        //             new Measure{Description = "50,000 - 99,999", Weight = 6, MeasureTypeId = measuretypes[2].Id, MeasureIndex = 3},
-        //             new Measure{Description = "100,000 - 499,999", Weight = 8, MeasureTypeId = measuretypes[2].Id, MeasureIndex = 4},
-        //             new Measure{Description = "500,000+", Weight = 10, MeasureTypeId = measuretypes[2].Id, MeasureIndex = 5},
-        //             new Measure{Description = "Poor Health", Weight = 1, MeasureTypeId = measuretypes[3].Id, MeasureIndex = 1},
-        //             new Measure{Description = "Ok Health", Weight = 5, MeasureTypeId = measuretypes[3].Id, MeasureIndex = 2},
-        //             new Measure{Description = "Great Health", Weight = 10, MeasureTypeId = measuretypes[3].Id, MeasureIndex = 3},
-        //             new Measure{Description = "Black", Weight = 1, MeasureTypeId = measuretypes[4].Id, MeasureIndex = 1},
-        //             new Measure{Description = "White", Weight = 10, MeasureTypeId = measuretypes[4].Id, MeasureIndex = 2},
-        //            new Measure{Description = "Poor Investments", Weight = 1, MeasureTypeId = measuretypes[5].Id, MeasureIndex = 1},
-        //             new Measure{Description = "Great Investments", Weight = 10, MeasureTypeId = measuretypes[5].Id, MeasureIndex = 2},
-        //             new Measure{Description = "Small Family", Weight = 2, MeasureTypeId = measuretypes[6].Id, MeasureIndex = 1},
-        //             new Measure{Description = "Large Family", Weight = 8, MeasureTypeId = measuretypes[6].Id, MeasureIndex = 2},
-        //             new Measure{Description = "Alabama", Weight = 1, MeasureTypeId = measuretypes[7].Id, MeasureIndex = 1},
-        //             new Measure{Description = "New York", Weight = 10, MeasureTypeId = measuretypes[7].Id, MeasureIndex = 2},
-        //             new Measure{Description = "Female", Weight = 2, MeasureTypeId = measuretypes[8].Id, MeasureIndex = 1},
-        //             new Measure{Description = "Male", Weight = 6, MeasureTypeId = measuretypes[8].Id, MeasureIndex = 2},
-        //         };
-
-        //         foreach (var item in measures)
-        //     {
-        //        // Measure measure = new Measure();
-        //         //var measure = _mapper.Map<Measure>(item);
-        //         //Add(measure);
-        //         //context.Add(item);
-        //     }
-
-             // SaveAll();
-
-             // context.SaveChangesAsync();
 
                 // create some roles
                 if (!roleManager.Roles.Any())
@@ -125,7 +50,7 @@ namespace GoUpLadder.API.Data
                 foreach (var user in users)
                 {
                     userManager.CreateAsync(user, "password").Wait();
-                    userManager.AddToRoleAsync(user, "Member");
+                    await userManager.AddToRoleAsync(user, "Member");
                 }
 
                 // create admin user
@@ -139,47 +64,17 @@ namespace GoUpLadder.API.Data
                 if (result.Succeeded)
                 {
                     var admin = userManager.FindByNameAsync("Admin").Result;
-                    userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
+                    await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
                 }
                
 
                 
 
-            // return "Done";
+           
             }
         }
        
-        public async Task<bool> SaveAll()
-        {
-           return await _context.SaveChangesAsync() > 0;
-        }
-        public void Add<T>(T entity) where T : class
-        {
-            _context.Add(entity);
-        }
-        // private static Seed m_Singleton = new Seed(_mapper);
-      
-
-        // public async Task<string> CallMeasures(List<Measure> Measures)
-        // {
-        //     UpLadderRespository repo = new UpLadderRespository(context);
-            
-        //     await repo.SaveAll();
-        //     return "Done";
-        // }
-        // public async Task<string> CallMeasureTypes(List<MeasureTypeForCreationDto> MeasureTypes)
-        // {
-        //     UpLadderRespository repo = new UpLadderRespository(context);
-        //     foreach (var item in MeasureTypes)
-        //     {
-        //         MeasureType measuretype = new MeasureType();
-        //         //measuretype = _mapper.Map<MeasureType>(item);
-        //         repo.Add(item);
-        //     }
-
-        //     await repo.SaveAll();
-        //     return "Done";
-        // }
+       
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
