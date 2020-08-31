@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/98108dbd-c209-4ed9-b971-5a2ecd2335b9/resourceGroups/goupladder/providers/Microsoft.Web/sites/goupladder",
+    "appService.deploySubpath": "GoUpLadder.API\\bin\\Release\\netcoreapp3.1\\publish"
+}
