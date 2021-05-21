@@ -1,4 +1,9 @@
 <div class="row">
+  <h2 class='mx-auto mt-5'>Simulate Your Balance</h2>
+ <br>
+</div>
+<hr>
+<div class="row">
   <div class="col-md-12 mx-auto my-5">
     <div style="display: block;">
       <canvas
@@ -33,9 +38,42 @@
   </div>
 </div>
  -->
-<div class="row">
-  <div class="col-md-12 mx-auto my-5">
-    <div class="btn-group" dropdown>
+ <hr>
+ <div class="row">
+   <h2 class='mx-auto'>Measures To Apply</h2>
+  <br>
+</div>
+<hr>
+ <div class="row">
+  <div class="col-sm text-center">
+    <label>Age Group</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Education Level</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Income Level</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Health</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Race/Ethnicity</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Investments</label>   
+  </div>
+  <div class="col-sm text-center">
+    <label>Family Size</label>   
+  </div>
+ 
+</div>
+
+ <div class="row">
+  
+ 
+    <div class="btn-group col-sm" dropdown>
+     
       <button
         id="button-basic"
         dropdownToggle
@@ -62,7 +100,7 @@
         </li>
       </ul>
     </div>
-    <div class="btn-group" dropdown>
+    <div class="btn-group col-sm" dropdown>
       <button
         id="button-basic"
         dropdownToggle
@@ -89,7 +127,7 @@
         </li>
       </ul>
     </div>
-    <div class="btn-group" dropdown>
+    <div class="btn-group col-sm" dropdown>
       <button
         id="button-basic"
         dropdownToggle
@@ -116,7 +154,7 @@
         </li>
       </ul>
     </div>
-    <div class="btn-group" dropdown>
+    <div class="btn-group col-sm" dropdown>
       <button
         id="button-basic"
         dropdownToggle
@@ -143,7 +181,88 @@
         </li>
       </ul>
     </div>
-  </div>
+    <div class="btn-group col-sm" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption5 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure5 of measures5"
+          (click)="changeSelectedOption5(measure5.description, measure5.weight)"
+        >
+          <span class="dropdown-item"> {{ measure5.description }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group col-sm" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption6 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure6 of measures6"
+          (click)="changeSelectedOption6(measure6.description, measure6.weight)"
+        >
+          <span class="dropdown-item"> {{ measure6.description }} </span>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group col-sm" dropdown>
+      <button
+        id="button-basic"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic"
+      >
+        {{ selectedOption7 }} <span class="caret"></span>
+      </button>
+
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li
+          role="menuitem"
+          *ngFor="let measure7 of measures7"
+          (click)="changeSelectedOption7(measure7.description, measure7.weight)"
+        >
+          <span class="dropdown-item"> {{ measure7.description }} </span>
+        </li>
+      </ul>
+    </div>
+ 
 </div>
 <!-- <div class="row">
   <div class="col-md-6 mx-auto text-center">

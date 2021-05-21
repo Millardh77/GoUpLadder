@@ -12,6 +12,7 @@ namespace GoUpLadder.API.Models
         public virtual User User { get; set; }
         public int UserId { get; set; }
         public int MeasureIndex { get; set; }
+        public string Description { get; set; }
         
     }
 }

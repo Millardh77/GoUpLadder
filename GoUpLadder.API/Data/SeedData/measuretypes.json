@@ -1,0 +1,9 @@
+[{"Id":1,"Description":"Age Range"},
+    {"Id":2,"Description":"Education Level"},
+    {"Id":3,"Description":"Income Range"},
+    {"Id":4,"Description":"General Health"},
+    {"Id":5,"Description":"Race\/Ethnicity"},
+    {"Id":6,"Description":"Investments"},
+    {"Id":7,"Description":"Family Size"},
+    {"Id":8,"Description":"State"},
+    {"Id":9,"Description":"Gender"}]

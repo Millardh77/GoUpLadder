@@ -41,20 +41,20 @@ export class MemberDetailComponent implements OnInit {
         preview: false
       }
     ];
-    this.galleryImages = this.getImages();
+    // this.galleryImages = this.getImages();
   }
-  getImages() {
-    const imageUrls = [];
-    for (const photo of this.user.photos) {
-      imageUrls.push({
-        small: photo.url,
-        medium: photo.url,
-        big: photo.url,
-        description: photo.description
-      });
-    }
-    return imageUrls;
-  }
+  // getImages() {
+  //   const imageUrls = [];
+  //   for (const photo of this.user.photos) {
+  //     imageUrls.push({
+  //       small: photo.url,
+  //       medium: photo.url,
+  //       big: photo.url,
+  //       description: photo.description
+  //     });
+  //   }
+  //   return imageUrls;
+  // }
 
   selectTab(tabId: number) {
     this.memberTabs.tabs[tabId].active = true;

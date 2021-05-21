@@ -213,6 +213,9 @@ namespace GoUpLadder.API.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("MeasureIndex")
                         .HasColumnType("INTEGER");
 

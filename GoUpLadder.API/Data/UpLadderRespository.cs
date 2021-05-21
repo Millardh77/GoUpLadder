@@ -83,13 +83,31 @@ namespace GoUpLadder.API.Data
 
          public  async Task<IEnumerable<UserMeasure>> GetUserMeasures(int id)
         {
-            var usermeasures =  await _context.UserMeasure
-                    .Where(m => m.UserId == id)
+            // var query = from usermeasure in _context.Set<UserMeasure>()
+            // join measure in _context.Set<Measure>()
+            //     on (usermeasure.MeasureTypeId = measure.MeasureTypeId,
+            //         usermeasure.MeasureIndex equals measure.MeasureIndex)
+            // select new { person, photo };
+
+            var result =  await _context.UserMeasure
+                    .Join( _context.Measure, usermeasure => 
+                    new { C1 = usermeasure.MeasureTypeId, C2 = usermeasure.MeasureIndex },
+                        measure => new { C1 = measure.MeasureTypeId, C2 = measure.MeasureIndex},
+                        (usermeasure, measure) => new { UserMeasure = usermeasure, Measure = measure}
+                      )
+                    .Where(m => m.UserMeasure.UserId == id)
+                    .Select(m => new UserMeasure{
+                        MeasureTypeId = m.UserMeasure.MeasureTypeId,
+                        MeasureIndex = m.UserMeasure.MeasureIndex,
+                        Id = m.UserMeasure.Id,
+                        Weight = m.UserMeasure.Weight,
+                        Description = m.Measure.Description
+                    })
                     .ToListAsync();
                       
             //var measures = await _context.Measures.FirstOrDefaultAsync(m => m.Type.Id == id);
 
-            return usermeasures;
+            return result;
         }
 
         public async Task<UserMeasure> GetUserMeasure(int id)

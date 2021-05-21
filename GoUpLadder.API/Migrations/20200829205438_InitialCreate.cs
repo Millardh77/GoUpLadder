@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoUpLadder.API.Migrations
 {
-    public partial class ResettingDatabase3 : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,7 +231,8 @@ namespace GoUpLadder.API.Migrations
                     Weight = table.Column<int>(nullable: false),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
-                    MeasureIndex = table.Column<int>(nullable: false)
+                    MeasureIndex = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -54,6 +54,7 @@ import { BalanceVisitorComponent } from './balance/balance-visitor/balance-visit
 import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { WebsiteDisclaimerComponent } from './website-disclaimer/website-disclaimer.component';
+import { BalanceLearnMoreComponent } from './balance/balance-learn-more/balance-learn-more.component';
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -83,7 +84,8 @@ export function tokenGetter() {
       BalanceVisitorComponent,
       TermsOfServiceComponent,
       PrivacyPolicyComponent,
-      WebsiteDisclaimerComponent
+      WebsiteDisclaimerComponent,
+      BalanceLearnMoreComponent
    ],
    imports: [
       BrowserModule,
@@ -109,6 +111,7 @@ export function tokenGetter() {
          }
       }),
       MDBBootstrapModule.forRoot()
+     
    ],
    providers: [
       AuthService,

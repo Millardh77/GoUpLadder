@@ -10,6 +10,7 @@ namespace GoUpLadder.API.Dtos
         public int Weight { get; set; }
         public DateTime DateAdded { get; set; }
         public int MeasureIndex { get; set; }
+        public string Description { get; set; }
         public UserMeasureForCreationDto()
         {
             DateAdded = DateTime.Now;
